@@ -10515,7 +10515,7 @@ readers do not read off random characters that represent icons */
   --bs-dark-border-subtle: #999999;
   --bs-white-rgb: 255, 255, 255;
   --bs-black-rgb: 0, 0, 0;
-  --bs-font-sans-serif: "forma-djr-thai-banner", serif;
+  --bs-font-sans-serif: forma-djr-thai-banner, sans-serif;
   --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
   --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
   --bs-body-font-family: var(--bs-font-sans-serif);
@@ -21946,8 +21946,8 @@ textarea.form-control-lg {
 body {
   padding-top: 124px;
   color: #000;
-  letter-spacing: 1.5px;
-  font-weight: 500;
+  letter-spacing: 1px;
+  font-weight: 400;
 }
 body.page-template-home {
   padding-top: 0;
@@ -22761,7 +22761,7 @@ figure figcaption {
   padding-bottom: 0;
   box-shadow: none !important;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   border-bottom: 5px solid transparent;
 }
 .navbar .nav-wrap .navbar-collapse .navbar-nav .nav-item .nav-link:hover {

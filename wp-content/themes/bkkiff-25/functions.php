@@ -132,7 +132,7 @@ add_filter('excerpt_length', 'n4d_excerpt_length');
  * Enqueue scripts and styles.
  */
 function chm_scripts() {
-	$version = '0.0.34';
+	$version = '0.0.37';
 //DEREGISTER
 	wp_deregister_script( 'wp-embed' );
 	wp_dequeue_script('google-recaptcha');
