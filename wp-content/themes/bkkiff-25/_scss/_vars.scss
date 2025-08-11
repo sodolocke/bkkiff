@@ -1,0 +1,138 @@
+$font-size-base:              1.1rem !default; // Assumes the browser default, typically `16px`
+$font-size-body:              1.07rem;
+$font-size-10px:              10px;
+
+$font-xl-scale:               1.45;
+$font-lg-scale:               1.2;
+
+$font-family-sans-serif:      "forma-djr-thai-banner", serif;
+
+$font-size-xl:                $font-size-base * 3 !default;
+$font-size-xs:                ($font-size-base * .750) !default;
+$font-size-xxs:               ($font-size-base * .630) !default;
+
+$font-header:                 $font-family-sans-serif;
+$font-body:                   $font-family-sans-serif;
+$font-title:                  $font-family-sans-serif;
+
+$font-body-th:                $font-family-sans-serif;
+
+$nav-link-color:              #555;
+
+$nav-height:                  105px;
+
+$persepective_height:         400px;
+
+$shadow:                 0 3px 6px rgba(0,0,0,0.6);
+
+
+
+// scss-docs-start gray-color-variables
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #e9ecef !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #999999 !default;
+$gray-600: #888888 !default;
+$gray-700: #666666 !default;
+$gray-800: #343a40 !default;
+$gray-900: #212529 !default;
+$black:    #000 !default;
+// scss-docs-end gray-color-variables
+
+// fusv-disable
+// scss-docs-start gray-colors-map
+$grays: (
+  "100": $gray-100,
+  "200": $gray-200,
+  "300": $gray-300,
+  "400": $gray-400,
+  "500": $gray-500,
+  "600": $gray-600,
+  "700": $gray-700,
+  "800": $gray-800,
+  "900": $gray-900
+) !default;
+// scss-docs-end gray-colors-map
+// fusv-enable
+
+
+// scss-docs-start color-variables
+$blue:       #0069AF !default;
+$blue-light: #387FA7 !default;
+$indigo:     #967ADC !default;
+$purple:     #AC92EC !default;
+$pink:       #EC87C0 !default;
+$red:        #EF0000 !default;
+$orange:     #D94423 !default;
+$yellow:     #FFCE54 !default;
+$green:      #50B848 !default;
+$green-dark: #04884B !default;
+$teal:       #629181 !default;
+$teal-dark:  #444939 !default;
+$cyan:       #86BAA9 !default;
+$cyan-light: #90D2C1 !default;
+
+$gold-lighter: #E7DECD !default;
+$gold-light:   #D9C27E !default;
+$gold:         #D9A404 !default;
+$gold-dark:    #BF9004 !default;
+
+
+$theme-darker:                $black;
+$theme-dark:                  $gold-dark;
+$theme-color:                 $orange;
+$theme-color-secondary:       $gold-light;
+$theme-color-secondary-dark:  $gold;
+$theme-light:                 $gold-light;
+$theme-lighter:               $gold-lighter;
+$theme-gradient:              radial-gradient(circle, rgba(51,51,51,1) 0%, rgba(0,0,0,1) 100%);
+
+$footer-bg:                   $black;
+$navigation-bg:               #EBE8E2;
+$navigation-color:            $black;
+$search-opacity:              1;
+
+$progress-color:              $theme-color;
+$bg-search:                   $theme-color;
+
+$fb-color:					  #3b5998;
+$line-color:                  #06C755;
+$twitter-color:               #1da1f2;
+$pinterest-color:             #E60023;
+$ig-color:                    #833AB4;
+
+$theme-gradient:              $theme-color 0%, $theme-darker 100%;
+
+
+// scss-docs-end color-variables
+
+// scss-docs-start colors-map
+$colors: (
+  "blue":       $blue,
+  "indigo":     $indigo,
+  "purple":     $purple,
+  "pink":       $pink,
+  "red":        $red,
+  "orange":     $orange,
+  "yellow":     $yellow,
+  "green":      $green,
+  "teal":       $teal,
+  "cyan":       $cyan,
+  "white":      $white,
+  "gray":       $gray-600,
+  "gray-dark":  $gray-800
+) !default;
+// scss-docs-end colors-map
+
+// scss-docs-start theme-color-variables
+$primary:       $theme-color !default;
+$secondary:     $theme-light !default;
+$success:       $green !default;
+$info:          $cyan !default;
+$warning:       $yellow !default;
+$danger:        $red !default;
+$light:         $theme-light !default;
+$dark:          $theme-darker !default;
+// scss-docs-end theme-color-variables

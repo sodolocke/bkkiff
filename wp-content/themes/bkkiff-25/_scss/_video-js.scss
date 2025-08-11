@@ -1,0 +1,69 @@
+@import "../_js/node_modules/video.js/src/css/icons";
+
+@import "../_js/node_modules/video.js/src/css/variables";
+@import "../_js/node_modules/video.js/src/css/private-variables";
+@import "../_js/node_modules/video.js/src/css/utilities";
+
+@import "../_js/node_modules/videojs-font/scss/icons";
+
+@import "../_js/node_modules/video.js/src/css/components/layout";
+@import "../_js/node_modules/video.js/src/css/components/big-play";
+@import "../_js/node_modules/video.js/src/css/components/button";
+@import "../_js/node_modules/video.js/src/css/components/close-button";
+@import "../_js/node_modules/video.js/src/css/components/modal-dialog";
+@import "../_js/node_modules/video.js/src/css/components/menu/menu";
+@import "../_js/node_modules/video.js/src/css/components/menu/menu-popup";
+@import "../_js/node_modules/video.js/src/css/components/menu/menu-inline";
+
+@import "../_js/node_modules/video.js/src/css/components/control-bar";
+@import "../_js/node_modules/video.js/src/css/components/control";
+@import "../_js/node_modules/video.js/src/css/components/control-spacer";
+
+@import "../_js/node_modules/video.js/src/css/components/progress";
+@import "../_js/node_modules/video.js/src/css/components/slider";
+
+@import "../_js/node_modules/video.js/src/css/components/volume";
+
+@import "../_js/node_modules/video.js/src/css/components/poster";
+@import "../_js/node_modules/video.js/src/css/components/live";
+@import "../_js/node_modules/video.js/src/css/components/time";
+@import "../_js/node_modules/video.js/src/css/components/play-pause";
+@import "../_js/node_modules/video.js/src/css/components/text-track";
+@import "../_js/node_modules/video.js/src/css/components/picture-in-picture";
+@import "../_js/node_modules/video.js/src/css/components/fullscreen";
+@import "../_js/node_modules/video.js/src/css/components/playback-rate";
+@import "../_js/node_modules/video.js/src/css/components/error";
+@import "../_js/node_modules/video.js/src/css/components/loading";
+@import "../_js/node_modules/video.js/src/css/components/captions";
+@import "../_js/node_modules/video.js/src/css/components/chapters";
+@import "../_js/node_modules/video.js/src/css/components/descriptions";
+@import "../_js/node_modules/video.js/src/css/components/subtitles";
+@import "../_js/node_modules/video.js/src/css/components/subs-caps";
+@import "../_js/node_modules/video.js/src/css/components/audio";
+@import "../_js/node_modules/video.js/src/css/components/adaptive";
+@import "../_js/node_modules/video.js/src/css/components/captions-settings";
+@import "../_js/node_modules/video.js/src/css/components/title-bar";
+@import "../_js/node_modules/video.js/src/css/components/skip-buttons";
+@import "../_js/node_modules/video.js/src/css/components/transient-button";
+
+@import "../_js/node_modules/video.js/src/css/print";
+/**/
+
+.vjs-resize-manager {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  z-index: -1000;
+}
+
+// The rule is needed for :focus-visible polyfill
+.js-focus-visible .video-js *:focus:not(.focus-visible) {
+  outline: none;
+}
+
+.video-js *:focus:not(:focus-visible) {
+  outline: none;
+}

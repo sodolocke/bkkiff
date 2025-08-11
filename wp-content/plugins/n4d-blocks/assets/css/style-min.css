@@ -1,0 +1,14 @@
+/**
+ * #.# Styles
+ *
+ * CSS for both Frontend+Backend.
+ */
+.synqa-blocks .media {
+  border: 2px dashed #EEE;
+  padding: 0.5rem; }
+
+.synqa-blocks .editor-rich-text {
+  background-color: #EEE; }
+
+.n4d-presentation {
+  background-color: #000; }

@@ -1,0 +1,259 @@
+# Copyright (C) 2020 MotoPress
+# This file is distributed under the same license as the Block Editor Colors plugin.
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: Block Editor Colors\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/block-editor-colors\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-08-13 17:00+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: Poedit 2.2.4\n"
+"X-Domain: block-editor-colors\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-WPHeader: plugin.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;"
+"__ngettext_noop:1,2\n"
+"X-Poedit-Flags-xgettext: --add-comments\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/BlockEditorColors.php:35
+msgid "Settings"
+msgstr ""
+
+#: includes/CustomColorsService.php:35 includes/CustomColorsService.php:38
+msgid "Editor Color"
+msgstr ""
+
+#: includes/CustomColorsService.php:37 includes/CustomColorsService.php:46 includes/admin/pages/SettingsPage.php:15 includes/admin/pages/SettingsPage.php:16
+msgid "Editor Colors"
+msgstr ""
+
+#: includes/CustomColorsService.php:39 includes/CustomColorsService.php:40
+msgid "Add Editor Color"
+msgstr ""
+
+#: includes/CustomColorsService.php:41
+msgid "Edit Editor Color"
+msgstr ""
+
+#: includes/CustomColorsService.php:42
+msgid "New Editor Color"
+msgstr ""
+
+#: includes/CustomColorsService.php:43
+msgid "View Editor Color"
+msgstr ""
+
+#: includes/CustomColorsService.php:44
+msgid "Find Editor Color"
+msgstr ""
+
+#: includes/CustomColorsService.php:45
+msgid "Editor Color Not Found"
+msgstr ""
+
+#: includes/CustomColorsService.php:103 includes/CustomColorsService.php:123 includes/CustomColorsService.php:196 includes/DefaultColorsService.php:60 includes/OptionsService.php:42
+msgid "Denied"
+msgstr ""
+
+#: includes/CustomColorsService.php:107 includes/CustomColorsService.php:139 includes/DefaultColorsService.php:76
+msgid "Empty fields"
+msgstr ""
+
+#: includes/CustomColorsService.php:127 includes/CustomColorsService.php:200
+msgid "You must specify Color ID"
+msgstr ""
+
+#: includes/DefaultColorsService.php:64
+msgid "You must specify Color Slug"
+msgstr ""
+
+#: includes/DefaultColorsService.php:123
+msgid "Pale pink"
+msgstr ""
+
+#: includes/DefaultColorsService.php:128
+msgid "Vivid red"
+msgstr ""
+
+#: includes/DefaultColorsService.php:133
+msgid "Luminous vivid orange"
+msgstr ""
+
+#: includes/DefaultColorsService.php:138
+msgid "Luminous vivid amber"
+msgstr ""
+
+#: includes/DefaultColorsService.php:143
+msgid "Light green cyan"
+msgstr ""
+
+#: includes/DefaultColorsService.php:148
+msgid "Vivid green cyan"
+msgstr ""
+
+#: includes/DefaultColorsService.php:153
+msgid "Pale cyan blue"
+msgstr ""
+
+#: includes/DefaultColorsService.php:158
+msgid "Vivid cyan blue"
+msgstr ""
+
+#: includes/DefaultColorsService.php:163
+msgid "Vivid purple"
+msgstr ""
+
+#: includes/DefaultColorsService.php:168
+msgid "Very light gray"
+msgstr ""
+
+#: includes/DefaultColorsService.php:173
+msgid "Cyan bluish gray"
+msgstr ""
+
+#: includes/DefaultColorsService.php:178
+msgid "Very dark gray"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+#: includes/admin/pages/SettingsPage.php:38
+msgid "Block Editor Colors"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:39
+msgid "Change block editor colors that are registered with a theme or create your own colors. They appear in the color palette of the block editor."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:72
+msgid "Default Colors"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:73
+msgid "The colors of the active theme. They change when you switch a theme."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:78
+msgid "Looks like your theme does not have any registered colors"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:109 includes/admin/pages/SettingsPage.php:187 includes/admin/pages/SettingsPage.php:257 includes/admin/pages/SettingsPage.php:376
+msgid "Color: "
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:119 includes/admin/pages/SettingsPage.php:197 includes/admin/pages/SettingsPage.php:266 includes/admin/pages/SettingsPage.php:357
+msgid "Name: "
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:123 includes/admin/pages/SettingsPage.php:201 includes/admin/pages/SettingsPage.php:270
+msgid "Color Name"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:129 includes/admin/pages/SettingsPage.php:207 includes/admin/pages/SettingsPage.php:275 includes/admin/pages/SettingsPage.php:366
+msgid "Slug: "
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:134 includes/admin/pages/SettingsPage.php:212 includes/admin/pages/SettingsPage.php:280
+msgid "color-name"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:141 includes/admin/pages/SettingsPage.php:219 includes/admin/pages/SettingsPage.php:322
+msgid "Update"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:144
+msgid "Reset"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:159
+msgid "Custom Colors"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:160
+msgid ""
+"Create new colors using the form below to extend the color palette of the block editor. You will not lose these colors when you change a theme. These colors can be deactivated or "
+"transfered via XML."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:161
+msgid "Name - will be displayed as the color name in the block editor."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:162
+msgid "Slug - will be used to generate CSS classes for a color."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:163 includes/admin/pages/SettingsPage.php:279
+msgid "Only Latin lowercase letters, numbers, hyphens and underscores are allowed. The slug must be unique."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:164
+msgid "(\"name12\" - bad slug use \"name-12\" instead)"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:221
+msgid "Disable"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:225
+msgid "Drag the card to change the order of colors."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:226
+msgid "Updating."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:227
+msgid "Something went wrong during the color update! Please try again."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:286
+msgid "Add Color"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:297
+msgid "General Settings"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:306
+msgid "CSS class prefix:"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:314
+msgid "This prefix will be used in style generation, and will be added before the color classes."
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:316
+msgid "For example: .entry-content"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:334
+msgid "Inactive Custom Colors"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:386
+msgid "Restore"
+msgstr ""
+
+#: includes/admin/pages/SettingsPage.php:389
+msgid "Delete"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Change Gutenberg block editor colors or create new ones."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "MotoPress"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://motopress.com"
+msgstr ""
