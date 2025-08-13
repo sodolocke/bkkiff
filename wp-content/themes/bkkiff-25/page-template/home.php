@@ -20,48 +20,48 @@ $html .= "<div class=\"carousel-inner\">";
 
 $html .= "<div class=\"carousel-item active\">";
 $html .= "<div class=\"stage container\">";
-$html .= "<img src=\"".get_template_directory_uri()."/assets/img/home-1.png\" />";
+$html .= "<img src=\"".get_template_directory_uri()."/assets/img/home-1-2.png\" />";
 $html .= "</div>";//stage
-$html .= "<a href=\"/overview\" class=\"btn btn-lg btn-primary placed vertical-center horizontal-right\">View Info</a>";
+$html .= "<a href=\"/overview\" class=\"btn btn-lg btn-dark placed vertical-center horizontal-right\">View Info</a>";
 $html .= "</div>";//item
 
-$html .= "<div class=\"carousel-item\" style=\"background-color: #E7DECD;\">";
+$html .= "<div class=\"carousel-item\" style=\"background-color: #FEE9E2;\">";
 $html .= "<div class=\"stage container\">";
 $html .= "<img src=\"".get_template_directory_uri()."/assets/img/home-2.png\" />";
 
 $form_url = "https://forms.gle/vurGKewyq15EwtqX6";
 
 $html .= "<div class=\"btns\">";
-$html .= "<a href=\"{$form_url}\" class=\"btn btn-lg btn-primary\" target=\"_blank\">Submit</a>";
-$html .= "<a href=\"".home_url("/asian-short-film-competition/")."\" class=\"btn btn-lg btn-outline-primary\">View Info</a>";
+$html .= "<a href=\"{$form_url}\" class=\"btn btn-lg btn-dark\" target=\"_blank\">Apply</a>";
+$html .= "<a href=\"".home_url("/asian-short-film-competition/")."\" class=\"btn btn-lg btn-outline-dark\">View Info</a>";
 $html .= "</div>";
 
 $html .= "</div>";//stage
 $html .= "</div>";//item
 
-$html .= "<div class=\"carousel-item\" style=\"background-color: #D94423\">";
+$html .= "<div class=\"carousel-item\" style=\"background-color: #FA845C\">";
 $html .= "<div class=\"stage container\">";
 $html .= "<img src=\"".get_template_directory_uri()."/assets/img/home-3.png\" />";
 
 $form_url = "https://forms.gle/3Hv6ZtoKNKxsJRhN6";
 
 $html .= "<div class=\"btns\">";
-$html .= "<a href=\"{$form_url}\" class=\"btn btn-lg btn-primary\" target=\"_blank\">Submit</a>";
-$html .= "<a href=\"".home_url("/asian-project-pitching/")."\" class=\"btn btn-lg btn-outline-primary\">View Info</a>";
+$html .= "<a href=\"{$form_url}\" class=\"btn btn-lg btn-dark\" target=\"_blank\">Apply</a>";
+$html .= "<a href=\"".home_url("/asian-project-pitching/")."\" class=\"btn btn-lg btn-outline-dark\">View Info</a>";
 $html .= "</div>";
 
 $html .= "</div>";//stage
 $html .= "</div>";//item
 
-$html .= "<div class=\"carousel-item\" style=\"background-color: #D9C27E;\">";
+$html .= "<div class=\"carousel-item\" style=\"background-color: #B1DED5;\">";
 $html .= "<div class=\"stage container\">";
-$html .= "<img src=\"".get_template_directory_uri()."/assets/img/home-4.png?c=12\" />";
+$html .= "<img src=\"".get_template_directory_uri()."/assets/img/home-4.png?c=2\" />";
 
 $form_url = "https://forms.gle/aTFLhxtcyieZ6HVUA";
 
 $html .= "<div class=\"btns\">";
-$html .= "<a href=\"{$form_url}\" class=\"btn btn-lg btn-primary\" target=\"_blank\">Submit</a>";
-$html .= "<a href=\"".home_url("/thai-project-pitching/")."\" class=\"btn btn-lg btn-outline-primary\">View Info</a>";
+$html .= "<a href=\"{$form_url}\" class=\"btn btn-lg btn-dark\" target=\"_blank\">Apply</a>";
+$html .= "<a href=\"".home_url("/thai-project-pitching/")."\" class=\"btn btn-lg btn-outline-dark\">View Info</a>";
 $html .= "</div>";
 
 $html .= "</div>";//stage

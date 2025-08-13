@@ -56,11 +56,10 @@
 
 						&:hover {
 							.nav-link {
-								color: $theme-dark;
-								border-bottom: 5px solid $theme-dark;
+//								color: $theme-dark;
+//								border-bottom: $border-underline;
 							}
 						}
-
 
 						.dropdown-toggle {
 							display: none;
@@ -76,16 +75,17 @@
 						box-shadow: none !important;
 						text-transform: uppercase;
 						font-weight: 500;
-						border-bottom: 5px solid transparent;
+						border-bottom: 4px solid transparent;
 
 						&:hover {
-							color: $theme-light;
+							color: $black;
+							border-bottom: 4px solid $black;
 						}
 
 
 						&.active {
 							color: $theme-light;
-							border-bottom: 5px solid $theme-dark;
+							border-bottom: $border-underline;
 						}
 
 						.wpml-ls-flag {
@@ -101,7 +101,7 @@
 					&.current-menu-item {
 						.nav-link {
 							color: $theme-dark;
-							border-bottom: 5px solid $theme-dark;
+							border-bottom: $border-underline;
 						}
 
 						.dropdown-menu {
@@ -112,20 +112,12 @@
 						border-radius: 0;
 						border: 1px solid transparent;
 						top: 100%;
+						left: 1.5rem;
 						margin-top: 0;
 						background-color: $navigation-bg;
 						min-width: 300px;
 
-						&:before {
-							@include transition(all 0.4s);
-							content: "";
-							width: 100%;
-							position: fixed;
-							height: 10px;
-							background-color: $navigation-bg;
-							left: 0;
-							top: 120px;
-						}
+
 						&.show {
 							&:before {
 								height: 200px;
@@ -142,27 +134,32 @@
 							.nav-link {
 								border-bottom: none;
 								display: inline-block;
-								border-bottom: 5px solid transparent;
+								border-bottom: 4px solid transparent;
 								text-transform: none;
 								font-size: $font-size-sm;
 								text-align: center;
 								padding-left: 0;
 
 								&:hover {
+									color: $black;
 									background-color: transparent;
-									border-bottom: 5px solid $theme-dark;
+									border-bottom: 4px solid $black;
 								}
+
+
 
 								&.active {
 									color: $theme-dark;
-									border-bottom: 5px solid $theme-dark;
+									border-bottom: $border-underline;
 								}
 							}
-
+							&.current-menu-item,
+							&.current_page_item,
 							&.current-menu-item,
 							&.current-page-ancestor {
 								.nav-link {
 									color: $theme-dark;
+									border-bottom: $border-underline;
 								}
 							}
 						}
@@ -224,7 +221,6 @@
 			overflow: hidden;
 		}
 		.nav-wrap {
-			padding: 0.5rem 3rem;
 
 			.navbar-brand {
 				height: 100px;
@@ -386,6 +382,17 @@
 						.nav-item {
 							padding: 0.1rem 0.25rem;
 						}
+					}
+
+					&:before {
+						@include transition(all 0.4s);
+						content: "";
+						width: 100%;
+						position: fixed;
+						height: 10px;
+						background-color: $navigation-bg;
+						left: 0;
+						top: 120px;
 					}
 
 					.nav-link {

@@ -1,7 +1,8 @@
 {
   "identifier" : "8FE9233A-E6E5-4FDD-8DC7-C7644F717678",
   "ignoredFilePatterns" : [
-    "wp-content\/themes\/bkkiff-25\/_js\/node_modules"
+    "wp-content\/themes\/bkkiff-25\/_js\/node_modules",
+    "wp-content\/themes\/bkkiff-25\/config.codekit3"
   ],
   "localPath" : "wp-content\/themes\/bkkiff-25",
   "remotePath" : "\/public_html\/wp-content\/themes\/bkkiff-25",

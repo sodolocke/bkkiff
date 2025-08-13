@@ -1354,6 +1354,19 @@
       "plM" : 52780316221407,
       "prP" : 0
     },
+    "\/assets\/img\/home-1-2.png" : {
+      "ft" : 32768,
+      "iS" : 107446,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-1-2.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/assets\/img\/home-1.png" : {
       "ft" : 32768,
       "iS" : 110522,

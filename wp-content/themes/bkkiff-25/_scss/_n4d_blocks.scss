@@ -49,32 +49,34 @@
 .wp-block-button {
 	.wp-block-button__link {
 		@include transition(background 0.4s);
-		border-radius: 5px;
-		background-color: $theme-color;
+		border-radius: 0;
+//		background-color: $theme-color;
 		font-size: $font-size-sm;
-		padding: 0.25rem 2rem;
+		padding: 0.5rem 3rem;
+
 		color: $white;
-		border: 1px solid $theme-color;
+//		border: 1px solid $theme-color;
 		min-width: 220px;
 
 		&:hover {
-			 background-color: $theme-dark;
-			 border-color: $theme-dark;
-			 color: $white;
+//			 background-color: $theme-dark;
+//			 border-color: $theme-dark;
+//			 color: $white;
 		}
 	}
 	&.is-style-outline {
 
 		> .wp-block-button__link:not(.has-background),
 		.wp-block-button__link {
-			color: $theme-color !important;
-			border: 1px solid $theme-color;
+//			color: $theme-color !important;
+//			border: 1px solid $theme-color;
 			background-color: $white;
+			border-width: 1px;
 
 			&:hover {
-				 background-color: $theme-dark;
-				 border-color: $theme-dark;
-				 color: $white !important;
+//				 background-color: $theme-dark;
+//				 border-color: $theme-dark;
+//				 color: $white !important;
 			}
 		}
 	}

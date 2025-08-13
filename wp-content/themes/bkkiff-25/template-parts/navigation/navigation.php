@@ -7,7 +7,7 @@
 		</button>
 
 		<a class="navbar-brand" href="<?php echo home_url(); ?>">
-			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg?c=1" alt="BKKIFF logo" width="80" height="80" />
+			<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo.svg?c=2" alt="BKKIFF logo" width="80" height="80" />
 		</a>
 
 		<div class="collapse navbar-collapse" id="navbar-collapse">

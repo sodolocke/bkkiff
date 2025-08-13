@@ -4,7 +4,7 @@
 		<div class="row">
 			<div class="col-12 col-lg-3 order-lg-1">
 				<a href="<?php echo home_url(); ?>">
-					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-w.svg?c=1" alt="BKKIFF logo" height="120" class="footer-brand" />
+					<img src="<?php echo get_template_directory_uri(); ?>/assets/img/logo-w.svg?c=2" alt="BKKIFF logo" height="120" class="footer-brand" />
 				</a>
 				<?php
 				wp_nav_menu(array(

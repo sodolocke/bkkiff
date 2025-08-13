@@ -47,8 +47,14 @@ h1,h2,h3,h4,h5,h6{
 		&.btn-primary {
 			border-color: $white;
 		}
-		&.btn-outline-primary {
+		&.btn-outline-primary,
+		&.btn-outline-dark {
 			background-color: $white;
+		}
+		&.btn-outline-dark {
+			&:hover {
+				color: $black;
+			}
 		}
 	}
 }
@@ -403,10 +409,16 @@ form {
 	.form-control {
 		background-color: $gray-100;
 		border: none;
+		border-bottom: 1px solid $black;
+		border-radius: 0;
 
 		&:focus {
 			box-shadow: none;
 		}
+	}
+
+	textarea.form-floating {
+		min-height: 200px !important;
 	}
 }
 

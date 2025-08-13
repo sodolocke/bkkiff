@@ -13,7 +13,7 @@ if ( version_compare( $GLOBALS['wp_version'], '4.7-alpha', '<' ) ) {
  * runs before the init hook. The init hook is too late for some features, such
  * as indicating support for post thumbnails.
  */
-function chm_setup() {
+function bkkiff_setup() {
 	/*
 	 * Make theme available for translation.
 	 * Translations can be filed at WordPress.org. See: https://translate.wordpress.org/projects/wp-themes/roc
@@ -91,7 +91,7 @@ function chm_setup() {
 	add_theme_support( 'customize-selective-refresh-widgets' );
 	add_filter('show_admin_bar', '__return_false');
 }
-add_action( 'after_setup_theme', 'chm_setup' );
+add_action( 'after_setup_theme', 'bkkiff_setup' );
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
@@ -100,11 +100,11 @@ add_action( 'after_setup_theme', 'chm_setup' );
  *
  * @global int $content_width
  */
-function chm_content_width() {
+function bkkiff_content_width() {
 	$content_width = 1600;
-	$GLOBALS['content_width'] = apply_filters( 'chm_content_width', $content_width );
+	$GLOBALS['content_width'] = apply_filters( 'bkkiff_content_width', $content_width );
 }
-add_action( 'template_redirect', 'chm_content_width', 0 );
+add_action( 'template_redirect', 'bkkiff_content_width', 0 );
 /**
  * Handles JavaScript detection.
  *
@@ -112,10 +112,10 @@ add_action( 'template_redirect', 'chm_content_width', 0 );
  *
  * @since roc 1.0
  */
-function chm_javascript_detection() {
+function bkkiff_javascript_detection() {
 	echo "<script>(function(html){html.className = html.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>\n";
 }
-add_action( 'wp_head', 'chm_javascript_detection', 0 );
+add_action( 'wp_head', 'bkkiff_javascript_detection', 0 );
 remove_action('wp_head', 'wp_generator');
 
 function n4d_excerpt_more($more) {
@@ -131,8 +131,8 @@ add_filter('excerpt_length', 'n4d_excerpt_length');
 /**
  * Enqueue scripts and styles.
  */
-function chm_scripts() {
-	$version = '0.0.37';
+function bkkiff_scripts() {
+	$version = '0.0.58';
 //DEREGISTER
 	wp_deregister_script( 'wp-embed' );
 	wp_dequeue_script('google-recaptcha');
@@ -160,11 +160,11 @@ function chm_scripts() {
 		'nonce'    => wp_create_nonce( 'wp_rest' )
 	));
 }
-add_action( 'wp_enqueue_scripts', 'chm_scripts' );
-function chm_admin_scripts($hook) {
+add_action( 'wp_enqueue_scripts', 'bkkiff_scripts' );
+function bkkiff_admin_scripts($hook) {
 	// Only add to the edit.php admin page.
 	// See WP docs.
-	wp_enqueue_script('chm_admin', get_theme_file_uri( '/assets/js/n4d-admin.min.js' ), array(), '0.1');
+	wp_enqueue_script('bkkiff_admin', get_theme_file_uri( '/assets/js/n4d-admin.min.js' ), array(), '0.1');
 
 	if ('edit.php' !== $hook && 'post.php' !== $hook) return;
 
@@ -175,7 +175,7 @@ function chm_admin_scripts($hook) {
 		'ajax_url' => admin_url( 'admin-ajax.php' ),
 	));
 }
-add_action('admin_enqueue_scripts', 'chm_admin_scripts');
+add_action('admin_enqueue_scripts', 'bkkiff_admin_scripts');
 
 
 // REMOVE WP EMOJI

@@ -72,56 +72,25 @@ class n4d {
 			})
 		}
 
-		const videoPlaylists = document.querySelectorAll(".video-playlist")
+		const cf7Floating = document.querySelectorAll(".wpcf7-form .form-floating")
+		if (cf7Floating){
+			cf7Floating.forEach( input => {
+				const cf7wrap = input.closest(".wpcf7-form-control-wrap")
 
-		if (videoPlaylists){
-			videoPlaylists.forEach( playlist => {
-				const target = playlist.dataset.target
-				const player = document.querySelector(target)
-				const items  = playlist.querySelectorAll(".playlist")
-				const videos = []
-				if (player){
-					player.dataset.index = 0
 
-					items.forEach( (item,index) => {
-						videos.push(item.dataset.src)
+				const wrapper = document.createElement("div")
+				wrapper.classList.add("form-floating")
+				wrapper.classList.add("mb-3")
+				const label = document.createElement("label")
+				label.setAttribute("for", input.id)
+				label.innerHTML = input.placeholder
 
-						item.dataset.index = index
+				wrapper.appendChild(input)
+				wrapper.appendChild(label)
 
-						item.addEventListener("click", e => {
-							const index = e.target.dataset.index
-							const src   = e.target.dataset.src
-							const videos = player.dataset.list.split(",")
-
-							player.src = videos[index]
-							player.play()
-
-						})
-
-					} )
-
-					player.dataset.length = videos.length
-					player.dataset.list   = videos
-//console.log("list", player.dataset.list.split(","))
-
-					player.addEventListener("ended", e => {
-						const index  = e.target.dataset.index
-						const videos = e.target.dataset.list.split(",")
-						const length = e.target.dataset.length
-
-						e.target.dataset.index++
-
-						if (e.target.dataset.index == length) e.target.dataset.index = 0
-
-						player.src = videos[e.target.dataset.index]
-						player.play()
-					})
-
-				}
-
+				cf7wrap.appendChild(wrapper)
 			} )
 		}
-
 
 //		var player = videojs('video-player');
 
