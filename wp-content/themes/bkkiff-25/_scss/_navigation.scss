@@ -10,6 +10,7 @@
 		width: 100%;
 		display: flex;
 		justify-content: space-between;
+		align-items: center;
 		flex-grow: 1;
 		background-color: $navigation-bg;
 		padding: 0.75rem;
@@ -46,7 +47,6 @@
 			.navbar-nav {
 				width: 100%;
 				justify-content: center;
-				margin-bottom: 1rem;
 
 				.nav-item {
 					position: relative;
@@ -105,6 +105,10 @@
 						}
 
 						.dropdown-menu {
+
+							.nav-link {
+								color: $black;
+							}
 						}
 					}
 
@@ -117,6 +121,16 @@
 						background-color: $navigation-bg;
 						min-width: 300px;
 
+						&:before {
+							@include transition(all 0.4s);
+							content: "";
+							width: 100%;
+							position: fixed;
+							height: 10px;
+							background-color: $navigation-bg;
+							left: 0;
+							top: 120px;
+						}
 
 						&.show {
 							&:before {
@@ -223,7 +237,7 @@
 		.nav-wrap {
 
 			.navbar-brand {
-				height: 100px;
+				height: 65px;
 			}
 
 
@@ -234,9 +248,7 @@
 					.nav-item {
 						&.has_dropdown {
 							.dropdown-menu {
-								&:before {
-									top: -100px;
-								}
+								&:before {}
 							}
 
 							.dropdown-toggle {
@@ -384,16 +396,7 @@
 						}
 					}
 
-					&:before {
-						@include transition(all 0.4s);
-						content: "";
-						width: 100%;
-						position: fixed;
-						height: 10px;
-						background-color: $navigation-bg;
-						left: 0;
-						top: 120px;
-					}
+
 
 					.nav-link {
 						padding-left: 1.5rem;
@@ -430,10 +433,10 @@
 			align-items: center;
 
 			.navbar-brand {
-				width: 100%;
+				width: auto;
 				height: 50px;
 				padding: 0;
-				margin-left: -60px;
+				margin-left: 0;
 
 				img {
 					width: 100%;
@@ -491,9 +494,8 @@
 				padding: 0;
 
 				.navbar-brand {
-					height: 30px;
+					height: 50px;
 				}
-
 			}
 		}
 	}

@@ -1,8 +1,8 @@
 /*global wp_ajax_object, masonry, wpcf7_recaptcha */
 import { Alert, Button, Carousel, Collapse, Dropdown, Modal } from 'bootstrap'; //quiet
 //, Offcanvas, Popover, ScrollSpy, Tab, Toast, Tooltip
-import ScrollTrigger from "gsap/ScrollTrigger.js" //quiet
-import ScrollToPlugin from "gsap/ScrollToPlugin.js" //quiet
+//import ScrollTrigger from "gsap/ScrollTrigger.js" //quiet
+//import ScrollToPlugin from "gsap/ScrollToPlugin.js" //quiet
 import gsap from 'gsap' //quiet
 import {BProgress} from '@bprogress/core' //quiet
 
@@ -34,7 +34,7 @@ class n4d {
 		this.accordions = document.querySelectorAll(".accordion.horizontal .accordion-button")
 		this.scrollTriggers = []
 
-		gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)//Observer, ScrollSmoother
+//		gsap.registerPlugin(ScrollTrigger, ScrollToPlugin)//Observer, ScrollSmoother
 
 	}
 	init(){
@@ -43,8 +43,6 @@ class n4d {
 //Navigation
 		if (this.navigation) this.initNav()
 
-		this.slides()
-		this.scrollBox()
 		this.popup()
 
 		const searchBox = document.querySelector("#search-box")
@@ -96,142 +94,6 @@ class n4d {
 
 //console.log('check', videojs);
 
-
-	}
-	scrollBox(){
-		const scrollBoxes = document.querySelectorAll(".scroll-box")
-		scrollBoxes.forEach(box => {
-			const box_height    = box.offsetHeight
-			const scroll_height = box.scrollHeight
-			const scroll_scale  = box_height/scroll_height
-			const scrub_height  = scroll_scale * box_height
-			const is_init       = box.classList.contains("init")
-
-			if (scroll_height > box_height && !is_init){
-				const content  = document.createElement('div')
-				const scroller = document.createElement('div')
-				const scrub    = document.createElement('div')
-
-				content.innerHTML = box.innerHTML
-				box.innerHTML     = ""
-
-				scrub.classList.add("scrub")
-				scrub.style.height = scrub_height+"px"
-
-				content.classList.add("scroll-content")
-
-				scroller.classList.add("scroller")
-				scroller.appendChild(scrub)
-
-				box.appendChild(content)
-				box.appendChild(scroller)
-
-
-				content.addEventListener("scroll", e => {
-					const box           = content.parentElement
-					const box_height    = box.offsetHeight
-					const scroll_height = content.scrollHeight
-
-					const scroll_scale  = box_height/scroll_height
-					const scrub_height  = 10//scroll_scale * box_height
-					const scrub         = box.querySelector(".scrub")
-					scrub.style.top     = (e.target.scrollTop * ( (box_height - (scrub_height/2) )/scroll_height ) )+"px"
-				})
-
-				box.classList.add('init')
-			}
-
-			const active = box.querySelector(".nav-link.active")
-			if (active){
-				const scroll_content = box.querySelector(".scroll-content")
-				gsap.to(scroll_content, { duration: 0.4, scrollTo: active.offsetTop });
-			}
-
-
-		})
-
-		const triggerOffcanvas = document.querySelectorAll('[href="#offcanvas-timeline"]')
-		const myOffcanvas = document.querySelector('#offcanvas-timeline')
-		if (myOffcanvas){
-			myOffcanvas.addEventListener('show.bs.offcanvas', event => {
-				triggerOffcanvas.forEach(trigger => {
-					trigger.setAttribute("aria-expanded", true)
-				})
-			})
-			myOffcanvas.addEventListener('hide.bs.offcanvas', event => {
-				triggerOffcanvas.forEach(trigger => {
-					trigger.setAttribute("aria-expanded", false)
-				})
-			})
-		}
-	}
-	slides(){
-		this.resize()
-		const scrollSlide = document.querySelector(".slide-scroll")
-		const sections    = (scrollSlide) ? scrollSlide.querySelectorAll('.slide') : []
-		const scrolling   = {
-			enabled: true,
-			started: false,
-			events: "scroll,wheel,touchmove,pointermove".split(","),
-			prevent: e => e.preventDefault(),
-			disable() {
-				if (scrolling.enabled) {
-					scrolling.enabled = false;
-					window.addEventListener("scroll", gsap.ticker.tick, {passive: true});
-					scrolling.events.forEach((e, i) => (i ? document : window).addEventListener(e, scrolling.prevent, {passive: false}));
-				}
-			},
-			enable() {
-				if (!scrolling.enabled) {
-					scrolling.enabled = true;
-					window.removeEventListener("scroll", gsap.ticker.tick);
-					scrolling.events.forEach((e, i) => (i ? document : window).removeEventListener(e, scrolling.prevent));
-				}
-			}
-		}
-		const stage_w     = window.innerWidth
-		const tl          = gsap.timeline()
-
-		tl.pause();
-
-		function goToSection(section, anim) {
-			const scrolldown = document.querySelector(".scrolldown")
-			if (scrolldown){
-				if (section.id == "section-4"){
-					gsap.to(scrolldown, { opacity: 0, duration: 1 })
-				}
-				else {
-					gsap.to(scrolldown, { opacity: 1, duration: 1 })
-				}
-			}
-
-			if (scrolling.enabled && scrolling.started) {
-				scrolling.disable();
-				if (stage_w > 768) {
-					gsap.to(window, {
-						scrollTo: {y: section, autoKill: false},
-						onComplete: () => {
-							setTimeout(scrolling.enable, 200);
-						},
-						duration: 1
-					});
-				}
-
-				anim && anim.restart();
-			}
-		}
-
-
-		sections.forEach((item, index) => {
-			this.scrollTriggers[index] = ScrollTrigger.create({
-				trigger: item,
-				end: "bottom top+=1",
-				onEnter: () => goToSection(item),
-				onEnterBack: () => goToSection(item),
-				markers: false,
-			});
-		});
-		if (stage_w > 768) scrolling.started = true
 
 	}
 	popup(){

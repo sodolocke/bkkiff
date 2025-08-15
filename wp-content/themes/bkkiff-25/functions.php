@@ -132,7 +132,7 @@ add_filter('excerpt_length', 'n4d_excerpt_length');
  * Enqueue scripts and styles.
  */
 function bkkiff_scripts() {
-	$version = '0.0.58';
+	$version = '0.0.82';
 //DEREGISTER
 	wp_deregister_script( 'wp-embed' );
 	wp_dequeue_script('google-recaptcha');
@@ -145,12 +145,6 @@ function bkkiff_scripts() {
 	if ($no_jquery) wp_deregister_script('jquery');
 //THEME STYLESHEET
 	wp_enqueue_style( 'sls-style', get_stylesheet_uri(), array(), $version);
-//SCRIPT
-	if ( get_query_var('pagename') == "our-work" ) {
-		wp_enqueue_script( 'imagesloaded', get_theme_file_uri( '/assets/js/imagesloaded.pkgd.min.js' ), array(), $version, true );
-		wp_enqueue_script( 'masonry', get_theme_file_uri( '/assets/js/masonry.pkgd.min.js' ), array(), $version, true );
-		wp_enqueue_script('infinite-scroll', get_template_directory_uri() . '/assets/js/infinite-scroll.pkgd.min.js', false, '3.0.6', true);
-	}
 
 	wp_enqueue_script( 'bkkiff', get_theme_file_uri( '/assets/js/scripts.min.js' ), array('wp-i18n'), $version, true );
 

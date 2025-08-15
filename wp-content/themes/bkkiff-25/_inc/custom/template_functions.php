@@ -187,7 +187,7 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 	}
 	else {
 		$html .= "<div class=\"container-fluid\">";
-		$html .= "<h2 class=\"page-title uc mb-5 px-5\">{$title}</h2>";
+		$html .= "<h2 class=\"page-title uc my-5 px-5\">{$title}</h2>";
 		$html .= "</div>";
 	}
 

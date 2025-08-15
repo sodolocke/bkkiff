@@ -1380,6 +1380,32 @@
       "q" : 90,
       "rq" : 75
     },
+    "\/assets\/img\/home-2-2-m.png" : {
+      "ft" : 32768,
+      "iS" : 50583,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-2-2-m.png",
+      "oF" : 0,
+      "oIPL" : 1,
+      "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/assets\/img\/home-2-2.png" : {
+      "ft" : 32768,
+      "iS" : 56301,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-2-2.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/assets\/img\/home-2.png" : {
       "ft" : 32768,
       "iS" : 62910,
@@ -1393,6 +1419,32 @@
       "q" : 90,
       "rq" : 75
     },
+    "\/assets\/img\/home-3-2-m.png" : {
+      "ft" : 32768,
+      "iS" : 51120,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-3-2-m.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/assets\/img\/home-3-2.png" : {
+      "ft" : 32768,
+      "iS" : 43429,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-3-2.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
     "\/assets\/img\/home-3.png" : {
       "ft" : 32768,
       "iS" : 47593,
@@ -1401,6 +1453,32 @@
       "oF" : 0,
       "oIPL" : 1,
       "opt" : 1,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/assets\/img\/home-4-2-m.png" : {
+      "ft" : 32768,
+      "iS" : 81982,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-4-2-m.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
+      "oT" : 1,
+      "ou" : "lpckwebp-none",
+      "q" : 90,
+      "rq" : 75
+    },
+    "\/assets\/img\/home-4-2.png" : {
+      "ft" : 32768,
+      "iS" : 51253,
+      "oA" : 0,
+      "oAP" : "\/assets\/img\/home-4-2.png",
+      "oF" : 0,
+      "oIPL" : 0,
+      "opt" : 0,
       "oT" : 1,
       "ou" : "lpckwebp-none",
       "q" : 90,

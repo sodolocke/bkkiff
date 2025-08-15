@@ -1526,6 +1526,7 @@ registerBlockType( 'n4d/marquee', {
 				return item
 			})
 			setAttributes({ items: value})
+console.log(value)
 		}
 		const deleteItem = (n) => {
 			let c = 0;
@@ -1622,6 +1623,8 @@ registerBlockType( 'n4d/marquee', {
 								pid: false,
 								mobile_id: false,
 								mobile_url: false,
+								apply: false,
+								apply_url: "",
 							});
 
 							setItems()
@@ -1738,34 +1741,6 @@ registerBlockType( 'n4d/marquee', {
 
 							<div className={contentClass}>
 
-
-
-								<div className="text-wrap">
-									<RichText
-										tagName="p"
-										placeholder={__( 'Title' )}
-										value={ item.title }
-										onChange={ value => {
-											items[i].title = value
-											setItems();
-										}}
-										className="title"
-									/>
-								</div>
-
-								<div className="text-wrap textarea">
-									<RichText
-										tagName="p"
-										placeholder={__( 'Description' )}
-										value={ item.content }
-										onChange={ value => {
-											items[i].content = value
-											setItems();
-										}}
-										className="text-content"
-									/>
-								</div>
-
 								<div className="settings">
 								<ToggleControl
 									label={ __( 'Align Right' ) }
@@ -1776,68 +1751,55 @@ registerBlockType( 'n4d/marquee', {
 									}}
 								/>
 								<ToggleControl
-									label={ __( 'Modal' ) }
-									checked={ item.modal }
-									onChange={ value => {
-										items[i].modal = value
-										setItems();
-									}}
-								/>
-								<ToggleControl
-									label={ __( 'Read More' ) }
+									label={ __( 'View Info' ) }
 									checked={ item.more }
 									onChange={ value => {
 										items[i].more = value
 										setItems();
 									}}
 								/>
+								<ToggleControl
+									label={ __( 'Apply' ) }
+									checked={ item.apply }
+									onChange={ value => {
+										items[i].apply = value
+										setItems();
+									}}
+								/>
 								</div>
-								<div className="link-wrapper">
-									<button
-									className="button add-link"
-										onClick={ () => {
-											items[i].show = ( items[i].show ) ? "" : " show";
-											setItems()
+								{items[i].more &&
+									<TextControl
+										label={ __( 'View Info URL' ) }
+										value={ item.link_url }
+										onChange={ value => {
+											items[i].link_url = value
+											setItems();
 										}}
-										data-group={`.n4d-marquee-link-${instanceId}`}
-									>{ (item.link_url) ? item.link_url : "Add Link" }</button>
-									{item.link_url &&
-									<a
-										className="unlink"
-										onClick={ () => {
-											items[i].link_url = "";
-											setItems()
+										className="title"
+									/>
+								}
+
+								{items[i].apply &&
+									<TextControl
+										label={ __( 'Apply URL' ) }
+										value={ item.apply_url }
+										onChange={ value => {
+											items[i].apply_url = value
+											setItems();
 										}}
-									>
-										<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M12 13.06l3.712 3.713 1.061-1.06L13.061 12l3.712-3.712-1.06-1.06L12 10.938 8.288 7.227l-1.061 1.06L10.939 12l-3.712 3.712 1.06 1.061L12 13.061z"></path>
-										</svg>
-									</a>
-									}
-									<div className={"link-wrap "+item.show}>
-										<LinkControl
-											onChange={ ( next ) => {
-												items[i].pid           = next.id
-												items[i].link          = (items[i].title) ? items[i].title : next.title
-												items[i].link_url      = next.url
-												items[i].opensInNewTab = next.opensInNewTab
-												items[i].show          = ""
-
-												setItems()
-											} }
-											suggestionsQuery={ {
-												type: 'post',
-												subtype: 'post',
-											} }
-											value={{
-												title: item.link,
-												url: item.link_url,
-												opensInNewTab: false
-											}}
-											data-target={`n4d-marquee-link-${instanceId}-${i}`}
-										/>
-									</div>
-								</div>
-
+										className="title"
+									/>
+								}
+								<hr />
+								<TextControl
+									label={ __( 'Background Color' ) }
+									value={ item.bg_color }
+									onChange={ value => {
+										items[i].bg_color = value
+										setItems();
+									}}
+									className="title"
+								/>
 							</div>
 						</div>
 					)
@@ -1883,43 +1845,50 @@ registerBlockType( 'n4d/marquee', {
 			const toggle   = (value.modal) ? "modal" : false
 			const isModal  = (value.modal) ? " preview-trigger" : ""
 			let slides     = ""
+			let apply      = ""
+			let info       = ""
+			let btns       = ""
 
 			let content    = value.content.split('\n').join("<br />")
 
 			if (value.more && url){
-				content += '<br /><div class="btn btn-primary">อ่านต่อ</div>';
+//				content += '<br /><div class="btn btn-primary">อ่านต่อ</div>';
+			}
+
+			const divStyle = {}
+
+			if (value.bg_color){
+				divStyle.backgroundColor = value.bg_color
+			}
+
+			if (value.right && value.link_url){
+				btns = (<a href={value.link_url} className="btn btn-lg btn-dark placed vertical-center horizontal-right">View Info</a>)
+			}
+			else {
+				if (value.apply_url){
+					apply = (<a href={value.apply_url} className="btn btn-lg btn-dark" target="_blank">Apply</a>)
+				}
+				if (value.link_url){
+					info = (<a href={value.link_url} className="btn btn-lg btn-outline-dark">View Info</a>)
+				}
+
+				btns = (<div className="btns">{apply}{info}</div>)
 			}
 
 
-
-			if (url){
-				slides = (<a href={url} className={"carousel-item "+ active + isModal} data-bs-toggle={toggle} data-bs-target={modal} data-id={value.pid} data-title={value.title} data-mode="post" target={target} rel="noopener">
+			slides = (<div className={"carousel-item "+ active + isModal} style={divStyle}>
+				<div class="stage">
 					<picture>
 						{value.mobile_url &&
 							<source media="(max-width:768px)" srcset={value.mobile_url} />
 						}
 						<img src={value.url} alt="..." />
 					</picture>
-					<div className={"carousel-caption"+right}>
-						<h1 className="title" dangerouslySetInnerHTML={{__html:value.title}}></h1>
-						<div className="entry" dangerouslySetInnerHTML={{__html:content}}></div>
-					</div>
-				</a>)
-			} else {
-				slides = (<div className={"carousel-item "+ active + isModal}>
-					<picture>
-						{value.mobile_url &&
-							<source media="(max-width:768px)" srcset={value.mobile_url} />
-						}
-						<img src={value.url} alt="..." />
-					</picture>
-					<div className={"carousel-caption"+right}>
-					<h1 className="title" dangerouslySetInnerHTML={{__html:value.title}}></h1>
-						<div className="entry" dangerouslySetInnerHTML={{__html:content}}></div>
-					</div>
-				</div>)
-			}
+					{btns}
 
+				</div>
+
+			</div>)
 
 			return slides;
 		}) : ""
@@ -1933,12 +1902,8 @@ registerBlockType( 'n4d/marquee', {
 		return (
 			<div id={section_id} className={section_class}>
 				<div id={section_id+"-carousel"} className="carousel slide" data-index={id} data-bs-ride="true">
+					<div class="carousel-indicators">{indicators}</div>
 					<div class="carousel-inner">{slides}</div>
-					{prev}
-					{next}
-					<div class="container text">
-						<div class="carousel-indicators">{indicators}</div>
-					</div>
 				</div>
 				{scrollBottomBtn}
 			</div>

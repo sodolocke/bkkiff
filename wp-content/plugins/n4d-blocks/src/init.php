@@ -19,14 +19,14 @@ function n4d_block_assets() {
 // Scripts.
 	wp_enqueue_script(
 		'n4d-block-js', // Handle.
-		plugins_url( 'assets/js/core.min.js?c=3', dirname( __FILE__ ) ),
+		plugins_url( 'assets/js/core.min.js?c=4', dirname( __FILE__ ) ),
 		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
 		true
 	);
 // Styles.
 	wp_enqueue_style(
 		'n4d-block-editor-css', // Handle.
-		plugins_url( 'assets/css/editor.css?c=1', dirname( __FILE__ ) ), // Block editor CSS.
+		plugins_url( 'assets/css/editor.css?c=2', dirname( __FILE__ ) ), // Block editor CSS.
 		array( 'wp-edit-blocks' )
 	);
 }

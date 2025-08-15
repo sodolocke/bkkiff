@@ -1,5 +1,5 @@
 </div>
-<?php if ( !is_front_page() ) : ?>
+
 	<footer id="main-footer" class="footer mt-auto">
 		<div class="row">
 			<div class="col-12 col-lg-3 order-lg-1">
@@ -68,7 +68,7 @@
 			</div>
 		</div>
 	</footer>
-<?php endif; ?>
+
 <?php
 //	get_template_part("template-parts/modal/splash");
 	get_template_part("template-parts/modal/popup");
