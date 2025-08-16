@@ -1901,7 +1901,7 @@ console.log(value)
 
 		return (
 			<div id={section_id} className={section_class}>
-				<div id={section_id+"-carousel"} className="carousel slide" data-index={id} data-bs-ride="true">
+				<div id={section_id+"-carousel"} className="carousel slide" data-index={id} data-bs-ride="carousel">
 					<div class="carousel-indicators">{indicators}</div>
 					<div class="carousel-inner">{slides}</div>
 				</div>

@@ -21949,10 +21949,6 @@ body {
   letter-spacing: 1px;
   font-weight: 400;
 }
-body.page-template-home {
-  padding-top: 0;
-}
-
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: 700;
 }
@@ -21968,6 +21964,24 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .marquee .banner-image {
   max-width: 100%;
   height: auto;
+}
+.marquee.blank {
+  position: relative;
+  padding-bottom: 26.041%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F6F2EC;
+}
+.marquee.blank .page-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn {
@@ -22007,6 +22021,7 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   margin-left: -2rem;
   position: absolute;
   bottom: 20%;
+  left: 13%;
 }
 .btns .btn {
   margin: 0 0.5rem;
@@ -22027,10 +22042,10 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   padding: 0.5rem 3rem;
 }
 .placed.vertical-center {
-  top: 50%;
+  top: 60%;
 }
 .placed.horizontal-right {
-  right: 1.5rem;
+  right: 6%;
 }
 
 .no-underline a {
@@ -22636,20 +22651,39 @@ figure figcaption {
   body.page-template-slides {
     padding-top: 50px;
   }
+  #marquee-indicators,
+  .wp-block-n4d-marquee .carousel {
+    height: auto;
+  }
   #marquee-indicators .carousel-indicators,
   .wp-block-n4d-marquee .carousel .carousel-indicators {
     justify-content: center;
   }
+  #marquee-indicators .carousel-inner,
+  .wp-block-n4d-marquee .carousel .carousel-inner {
+    height: auto;
+  }
+  #marquee-indicators .carousel-inner .carousel-item,
+  .wp-block-n4d-marquee .carousel .carousel-inner .carousel-item {
+    height: auto;
+  }
+  #marquee-indicators .carousel-inner .carousel-item .stage,
+  .wp-block-n4d-marquee .carousel .carousel-inner .carousel-item .stage {
+    height: auto;
+    padding-bottom: 60px;
+  }
   .btns {
-    position: absolute;
+    position: static;
     bottom: 50px;
     left: 0;
-    margin: 0 0.75rem;
+    margin: 0.75rem 0.75rem 0;
     justify-content: center;
     width: 100%;
   }
   .placed {
-    position: absolute;
+    position: static;
+    left: 0;
+    margin: 0.75rem 0.75rem 0;
     bottom: 50px;
   }
   .placed.vertical-center {
@@ -22923,6 +22957,9 @@ figure figcaption {
 .navbar.mini .nav-wrap .navbar-brand {
   height: 65px;
 }
+.navbar.mini .nav-wrap .navbar-collapse .navbar-nav .nav-item.has_dropdown .dropdown-menu:before {
+  top: 90px;
+}
 .navbar.mini .nav-wrap .navbar-collapse .navbar-nav .nav-item.has_dropdown .dropdown-toggle {
   display: none;
 }
@@ -22991,7 +23028,7 @@ figure figcaption {
     overflow: auto;
   }
   #navbar-collapse .navbar-nav {
-    padding: 1.5rem 0;
+    padding: 0;
   }
   #navbar-collapse .navbar-nav .nav-item {
     text-align: left;
@@ -23030,13 +23067,15 @@ figure figcaption {
   .navbar .nav-wrap {
     padding: 0;
     justify-content: start;
-    align-items: center;
+    align-items: start;
+    display: flex;
   }
   .navbar .nav-wrap .navbar-brand {
-    width: auto;
+    width: 100px;
     height: 50px;
     padding: 0;
-    margin-left: 0;
+    margin-left: -15px;
+    margin-top: 5px;
   }
   .navbar .nav-wrap .navbar-brand img {
     width: 100%;
@@ -23085,6 +23124,7 @@ figure figcaption {
     right: 0;
     z-index: 1;
     border-radius: 50%;
+    border: 1px solid #BF9004;
   }
   .navbar.mini .nav-wrap {
     padding: 0;
@@ -23784,6 +23824,9 @@ figure figcaption {
 .wp-block-n4d-container.n4d-overflow .container-fluid .wp-block-image, .wp-block-n4d-container.n4d-overflow .container-sm .wp-block-image, .wp-block-n4d-container.n4d-overflow .container-md .wp-block-image, .wp-block-n4d-container.n4d-overflow .container-lg .wp-block-image, .wp-block-n4d-container.n4d-overflow .container-xl .wp-block-image, .wp-block-n4d-container.n4d-overflow .container-xxl .wp-block-image {
   margin: 0 -0.75rem;
 }
+.wp-block-n4d-container.n4d-overflow .container-fluid .wp-block-image.fit, .wp-block-n4d-container.n4d-overflow .container-sm .wp-block-image.fit, .wp-block-n4d-container.n4d-overflow .container-md .wp-block-image.fit, .wp-block-n4d-container.n4d-overflow .container-lg .wp-block-image.fit, .wp-block-n4d-container.n4d-overflow .container-xl .wp-block-image.fit, .wp-block-n4d-container.n4d-overflow .container-xxl .wp-block-image.fit {
+  width: calc(100% + 1.5rem);
+}
 .wp-block-n4d-container.center-section {
   border-top: 1px solid #CCC;
   padding: 2rem 0;
@@ -24385,7 +24428,7 @@ figure figcaption {
     font-weight: 900;
   }
   .wp-block-n4d-marquee {
-    height: 500px;
+    height: auto;
   }
   .wp-block-gallery,
   .wp-block-gallery.has-nested-images {

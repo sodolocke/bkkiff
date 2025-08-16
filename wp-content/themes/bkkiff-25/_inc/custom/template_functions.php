@@ -105,12 +105,16 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 	$img_id     = false;
 	$hasMarquee = false;
 	$html       = "";
-	$dark       = get_post_meta($id, "_dark", true);
+	$bg_color   = get_post_meta($id, "_bg_color", true);
 	$split      = get_post_meta($id, "_title_split", true);
 	$overlap    = (get_post_type() == "project" && is_single()) ? true : get_post_meta($id, "_overlap_hide", true);
 	$nomargin   = get_post_meta($id, "_margin_none", true);
-	$m_class    = ($dark) ? " dark" : "";
 	$bannerM_id = false;
+	$style      = "";
+
+	if ($bg_color){
+		$style .= "background-color: {$bg_color};";
+	}
 
 	if (function_exists('kdmfi_has_featured_image')) {
 		$bannerM_id = kdmfi_has_featured_image('banner-image-m', $id);
@@ -142,6 +146,10 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 	$m_class .= ($nomargin) ? " mb-0" : "";
 
 	$filters = ($pagename == "our-work") ? render_filters() : "";
+
+	if ($style !== ""){
+		$style = " style=\"{$style}\"";
+	}
 
 	if ($image){
 		$html .= "<div class=\"marquee{$reverse}{$m_class}\">";
@@ -186,8 +194,8 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 		$hasMarquee         = true;
 	}
 	else {
-		$html .= "<div class=\"container-fluid\">";
-		$html .= "<h2 class=\"page-title uc my-5 px-5\">{$title}</h2>";
+		$html .= "<div class=\"marquee blank\"{$style}>";
+		$html .= "<h2 class=\"page-title uc px-5\">{$title}</h2>";
 		$html .= "</div>";
 	}
 

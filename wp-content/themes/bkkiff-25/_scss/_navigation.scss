@@ -248,7 +248,9 @@
 					.nav-item {
 						&.has_dropdown {
 							.dropdown-menu {
-								&:before {}
+								&:before {
+									top: 90px;
+								}
 							}
 
 							.dropdown-toggle {
@@ -374,7 +376,7 @@
 		overflow: auto;
 
 		.navbar-nav {
-			padding: 1.5rem 0;
+			padding: 0;
 
 			.nav-item {
 				text-align: left;
@@ -430,13 +432,16 @@
 		.nav-wrap {
 			padding: 0;
 			justify-content: start;
-			align-items: center;
+			align-items: start;
+			display: flex;
 
 			.navbar-brand {
-				width: auto;
+				width: 100px;
 				height: 50px;
 				padding: 0;
-				margin-left: 0;
+				margin-left: -15px;
+				margin-top: 5px;
+
 
 				img {
 					width: 100%;
@@ -481,6 +486,7 @@
 						right: 0;
 						z-index: 1;
 						border-radius: 50%;
+						border: 1px solid $theme-dark;
 
 					}
 				}

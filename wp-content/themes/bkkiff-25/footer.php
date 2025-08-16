@@ -19,7 +19,7 @@
 					'walker'          => new n4d_submenu_walker()
 				));
 				?>
-				<a href="mailto:info@bkkiff.com" class="mb-5">info@bkkiff.com</a>
+				<a href="mailto:info@bkkiff.co" class="my-5 d-block">info@bkkiff.co</a>
 
 			</div>
 			<div class="col-12 col-lg-3">

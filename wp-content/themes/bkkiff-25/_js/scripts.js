@@ -89,12 +89,6 @@ class n4d {
 				cf7wrap.appendChild(wrapper)
 			} )
 		}
-
-//		var player = videojs('video-player');
-
-//console.log('check', videojs);
-
-
 	}
 	popup(){
 		const splash = document.querySelector("#modal-splash")
@@ -148,7 +142,6 @@ console.log('popup', mode)
 
 		if (toggler) {
 			toggler.addEventListener("click", e => {
-console.log('click')
 				const expanded = toggler.getAttribute("aria-expanded")
 				const nav      = document.querySelector(".navbar")
 				console.log( toggler.getAttribute("aria-expanded") )

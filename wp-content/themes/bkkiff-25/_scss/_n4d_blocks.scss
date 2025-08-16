@@ -743,6 +743,10 @@
 		.container-fluid {
 			.wp-block-image {
 				margin: 0 -0.75rem;
+
+				&.fit {
+					width: calc(100% + 1.5rem);
+				}
 			}
 		}
 	}
@@ -1544,7 +1548,7 @@
 		}
 	}
 	.wp-block-n4d-marquee {
-		height: 500px;
+		height: auto;
 	}
 	.wp-block-gallery,
 	.wp-block-gallery.has-nested-images {
