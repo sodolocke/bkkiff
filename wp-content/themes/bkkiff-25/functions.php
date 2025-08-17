@@ -132,7 +132,7 @@ add_filter('excerpt_length', 'n4d_excerpt_length');
  * Enqueue scripts and styles.
  */
 function bkkiff_scripts() {
-	$version = '0.1.14';
+	$version = '0.1.15';
 //DEREGISTER
 	wp_deregister_script( 'wp-embed' );
 	wp_dequeue_script('google-recaptcha');
@@ -223,3 +223,7 @@ require get_template_directory() . '/_inc/custom/kdmfi.php';
 
 require get_template_directory() . '/_inc/cpt/project.php';
 require get_template_directory() . '/_inc/cpt/file.php';
+
+
+//
+add_filter( 'wp_calculate_image_sizes', '__return_false' );
