@@ -241,14 +241,14 @@ function n4d_get_share($id){
 	$encoded_url = urlencode(get_the_permalink($id));
 
 	$html  = "";
+	//Label
+	$html .= "<h6 class=\"share-title\">".__("SHARE", "bkkiff")."</h6>";
 	$html .= "<ul class=\"nav nav-share\">";
-//Label
-	$html .= "<li class=\"nav-item title\">".__("Share", "sls")."</li>";
+
 //Facebook
 	$html .= "<li class=\"nav-item\"><a class=\"nav-link\" href=\"https://www.facebook.com/sharer/sharer.php?u={$encoded_url}\"><i class=\"fa-brands fa-facebook-f\"></i></li>";
 //Twitter
-	$html .= "<li class=\"nav-item\"><a class=\"nav-link\" href=\"http://twitter.com/share?url={$encoded_url}\"><i class=\"fa-brands fa-square-x-twitter\"></i></a></li>";
-
+	$html .= "<li class=\"nav-item\"><a class=\"nav-link\" href=\"http://twitter.com/share?url={$encoded_url}\"><i class=\"fa-brands fa-x-twitter\"></i></a></li>";
 //Email
 	$subject = get_the_title($id).' at '.get_bloginfo();
 	$content = 'Hi, %0D%0A%0D%0Acheck out this at '.get_bloginfo().' for '.get_the_title($id).'. Visit '.get_the_permalink($id);

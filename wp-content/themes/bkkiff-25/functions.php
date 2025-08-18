@@ -122,7 +122,7 @@ function n4d_excerpt_more($more) {
 	return "...";
 }
 function n4d_excerpt_length($length){
-	return 40;
+	return 20;
 }
 add_filter('excerpt_more', 'n4d_excerpt_more');
 add_filter('excerpt_length', 'n4d_excerpt_length');
