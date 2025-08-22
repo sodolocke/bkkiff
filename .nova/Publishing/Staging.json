@@ -1,0 +1,10 @@
+{
+  "identifier" : "21066AE9-64A2-4EDB-9AAA-A37F77ADAB06",
+  "ignoredFilePatterns" : [
+    "wp-content\/themes\/bkkiff-25\/config.codekit3"
+  ],
+  "localPath" : "wp-content\/themes\/bkkiff-25",
+  "remotePath" : "\/public_html\/wp-content\/themes\/bkkiff-25",
+  "server" : "BKKIFF staging",
+  "usesPublishing" : true
+}

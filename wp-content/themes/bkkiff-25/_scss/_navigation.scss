@@ -367,6 +367,11 @@
 }
 
 @media (max-width: breakpoint-min(lg, $grid-breakpoints)) {
+	.navbar .nav-wrap .navbar-collapse .navbar-nav .nav-item .dropdown-menu:before {
+		display: none;
+	}
+
+
 	#navbar-collapse {
 		position: fixed;
 		top: 56px;
@@ -393,6 +398,8 @@
 					min-width: 0;
 
 					.dropdown-menu {
+
+
 						.nav-item {
 							padding: 0.1rem 0.25rem;
 						}

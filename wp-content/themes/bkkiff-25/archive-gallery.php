@@ -1,5 +1,4 @@
 <?php
-$lang     = apply_filters( 'wpml_current_language', NULL );
 $title    = false;
 $attr     = array(
 	"limit" => 6
@@ -10,16 +9,11 @@ if ($parent){
 }
 $page_title = get_the_archive_title();
 
-$prefix = ($lang == "en") ? "All " : "";
-$suffix = ($lang == "th") ? " ทั้งหมด" : "";
-
 $html  = "";
 $html .= "<main class=\"container pb-5\">";
-$html .= "<h2 class=\"news-carousel-title\">{$page_title}</h2>";
-$html .= render_news_marquee();
 $html .= "<article class=\"content-area\">";
-$html .= "<h2 class=\"news-carousel-title\">{$prefix}{$page_title}{$suffix}</h2>";
-$html .= render_news($attr);
+$html .= "<h2 class=\"news-carousel-title\">{$page_title}</h2>";
+$html .= render_galleries($attr);
 $html .= "</article>";
 $html .= "</main>";
 

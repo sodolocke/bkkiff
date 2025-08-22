@@ -17,12 +17,12 @@
       "oAP" : "\/_inc\/cpt\/file.php",
       "oF" : 0
     },
-    "\/_inc\/cpt\/project.php" : {
+    "\/_inc\/cpt\/gallery.php" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/_inc\/cpt\/project.php",
+      "oAP" : "\/_inc\/cpt\/gallery.php",
       "oF" : 0
     },
     "\/_inc\/custom\/admin-filters.php" : {
@@ -1105,6 +1105,14 @@
       "oAP" : "\/404.php",
       "oF" : 0
     },
+    "\/archive-gallery.php" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/archive-gallery.php",
+      "oF" : 0
+    },
     "\/archive.php" : {
       "cB" : 0,
       "ft" : 8192,
@@ -1904,14 +1912,6 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/style.css.map",
-      "oF" : 0
-    },
-    "\/taxonomy-projects.php" : {
-      "cB" : 0,
-      "ft" : 8192,
-      "hM" : 0,
-      "oA" : 0,
-      "oAP" : "\/taxonomy-projects.php",
       "oF" : 0
     },
     "\/template-parts\/modal\/popup.php" : {

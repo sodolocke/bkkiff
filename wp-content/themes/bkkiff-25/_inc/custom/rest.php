@@ -1,48 +1,21 @@
 <?php
 add_action( 'rest_api_init', 'n4d_rest');
 
-function n4d_get_jobs_rest($args = []){
+function n4d_get_gallery_rest($args = []){
 	$id   = (isset($args['id'])) ? $args['id'] : false;
 	$lang = (isset($args['lang'])) ? $args['lang'] : false;
 	$html = "";
 
-	$jobs = get_posts(array(
-		"post_type"        => "job",
-		"posts_per_page"   => -1,
-		"fields"           => "ids",
-		"suppress_filters" => false
-	));
+	$gallery = get_post_meta($id, "_gallery_ids", true);
 
-	$html .= "<option value=\"\" disabled>Select Position</option>";
-	$en_id = false;
-	$th_id = false;
-
-	foreach($jobs as $job){
-		$job_id = apply_filters( 'wpml_object_id', $job, 'job', FALSE, $lang );
-
-
-		$en_id = apply_filters( 'wpml_object_id', $job, 'job', FALSE, "en" );
-		$th_id = apply_filters( 'wpml_object_id', $job, 'job', FALSE, "th" );
-
-
-		$name  = get_the_title($job_id);
-		$selected = ($id == $job_id) ? " selected=\"selected\"" : "";
-		$email    = get_post_meta($job_id, "_email", true);
-		$html .= "<option value=\"{$name}\" data-email=\"{$email}\" data-en=\"{$en_id}\" data-th=\"{$th_id}\"{$selected}>{$name}</option>";
-
-		if ($id == $job_id){
-			$selected_en_id = apply_filters( 'wpml_object_id', $job, 'job', FALSE, "en" );
-			$selected_th_id = apply_filters( 'wpml_object_id', $job, 'job', FALSE, "th" );
-		}
-	}
-
+	$html    .= "<div class=\"galleries\">";
+		$ids         = implode(",", $gallery);
+		$html       .= apply_filters("the_content", "[n4d_carousel ids=\"{$ids}\" indicators=\"1\" indicatorsThumbnails=\"1\" ratio4x3=\"1\" cover=\"0\" modal=\"0\"]");
+	$html    .= "</div>";
 
 	$returner = array(
 		"html"   => $html,
 		"id"     => $id,
-		"lang"   => $lang,
-		"en_id"  => $selected_en_id,
-		"th_id"  => $selected_th_id
 	);
 	return rest_ensure_response($returner);
 }
@@ -57,9 +30,9 @@ function user_public_permission_callback($request){
 }
 
 function n4d_rest() {
-	register_rest_route( 'n4d/v1', '/jobs/(?P<id>[a-zA-Z0-9-_]+)/(?P<lang>[a-zA-Z0-9-_]+)', array(
+	register_rest_route( 'n4d/v1', '/gallery/(?P<id>[a-zA-Z0-9-_]+)', array(
 		'methods'             => 'GET',
-		'callback'            => 'n4d_get_jobs_rest',
+		'callback'            => 'n4d_get_gallery_rest',
 		'permission_callback' => 'user_permission_callback',
 		'args'                => array(
 			'id' => array(

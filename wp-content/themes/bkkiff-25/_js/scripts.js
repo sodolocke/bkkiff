@@ -102,6 +102,7 @@ class n4d {
 		popup.addEventListener('show.bs.modal', e => {
 			const trigger = e.relatedTarget
 			const mode    = trigger.dataset.mode
+			const id      = trigger.dataset.id
 			const body    = popup.querySelector(".modal-body")
 			popup.classList.remove("gallery")
 
@@ -111,23 +112,28 @@ class n4d {
 			switch(mode){
 				case "gallery":
 					popup.classList.add("gallery")
-					const gallery = trigger.closest(".gallery-carousel")
-					if (gallery){
-						const newGallery = document.createElement("div")
-						newGallery.id = `modal-${gallery.id}`
-						newGallery.classList.add("carousel","slide","gallery-carousel")
-						newGallery.innerHTML = gallery.innerHTML
-						const btns = newGallery.querySelectorAll("[data-bs-toggle=modal]")
-						btns.forEach( btn => {
-							btn.removeAttribute("data-bs-toggle")
-						} )
-						const triggers = newGallery.querySelectorAll(`[data-bs-target="#${gallery.id}"]`)
-						triggers.forEach( trigger => {
-							trigger.setAttribute("data-bs-target", `#modal-${gallery.id}`)
-						} )
+					if (id){
 
-						body.appendChild(newGallery)
+						body.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>'
+
+						fetch('/wp-json/n4d/v1/gallery/'+id, {
+							method: 'GET', // *GET, POST, PUT, DELETE, etc.
+							mode: 'cors', // no-cors, *cors, same-origin
+							cache: 'default', // *default, no-cache, reload, force-cache, only-if-cached
+							credentials: 'same-origin', // include, *same-origin, omit
+							headers: {
+								'Content-Type': 'application/json',
+								'X-WP-Nonce': wp_ajax_object.nonce
+							}
+						})
+						.then(response => response.json())
+						.then(data => {
+							body.innerHTML = data.html
+						});
 					}
+
+
+console.log(id)
 				break;
 			}
 
@@ -230,7 +236,6 @@ console.log('popup', mode)
 			}
 
 		})
-		this.scrollBox()
 	}
 	getCookie(cname){
 		let name = cname + "=";

@@ -3,7 +3,11 @@ $html        = "";
 $id          = get_the_ID();
 $taxonomy    = "category";
 $terms       = wp_get_post_terms($id, $taxonomy, array());
+$term        = current($terms);
+
+$cat_name    = ($term) ? $term->name : "";
 $date        = get_post_field("post_date", $id);
+$lang        = apply_filters( 'wpml_current_language', NULL );
 
 if ($lang == "th"){
 	$d     = date("d", strtotime($date));
@@ -22,8 +26,8 @@ get_header();
 
 
 $html .= "<main class=\"container\">";
-$html .= "<h1 class=\"page-title-parent\">".__("News", "bkkiff")."</h1>";
-$html .= "<article class=\"content-area mb-5\">";
+$html .= "<h1 class=\"page-title-parent\">{$cat_name}</h1>";
+$html .= "<article class=\"content-area single mb-5\">";
 
 $html .= "<div class=\"row\">";
 $html .= "<div class=\"col-12 col-lg-8 offset-lg-2\">";

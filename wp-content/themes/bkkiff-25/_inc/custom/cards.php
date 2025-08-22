@@ -184,6 +184,51 @@ function get_post_card($id, $hide_cat = false){
 
 	return $card;
 }
+function get_gallery_card($id, $hide_cat = false){
+	$lang      = apply_filters( 'wpml_current_language', NULL );
+	$title     = get_the_title($id);
+	$date      = get_post_field("post_date", $id);
+
+	if ($lang == "th"){
+		$d     = date("d", strtotime($date));
+		$m     = date("n", strtotime($date));
+		$m     = convert_month_th($m-1);
+		$y     = date("Y", strtotime($date)) + 543;
+		$date  = "{$d} {$m} {$y}";
+	} else {
+		$date  = date("d F Y", strtotime($date));
+	}
+
+	$img_id    = get_post_thumbnail_id($id);
+	$url       = get_permalink($id);
+	$excerpt   = get_the_excerpt($id);
+
+	$taxonomy  = "category";
+	$terms     = wp_get_post_terms($id, $taxonomy, array());
+
+	$card  = "";
+	$card .= "<div class=\"card gallery\">";
+
+
+	$card .= "<a data-id=\"{$id}\" data-bs-toggle=\"modal\" data-bs-target=\"#popup-modal\" data-mode=\"gallery\" class=\"card-image no-icon\">";
+	$card .= ($img_id) ? wp_get_attachment_image( $img_id, 'card', false, array()) : "";
+	$card .= "</a>";
+
+	$card .= "<div class=\"card-body\">";
+	$card .= "<div class=\"meta\">";
+	$card .= "<div class=\"card-date\">{$date}</div>";
+	$card .= "</div>";
+
+	$card .= "<h4 class=\"card-title\"><a data-bs-toggle=\"modal\" data-bs-target=\"#popup-modal\" data-mode=\"gallery\">{$title}</a></h4>";
+	$card .= "<div class=\"card-excerpt\">";
+	$card .= get_the_excerpt($id);
+	$card .= "</div>";//excerpt
+	$card .= "</div>";//body
+
+	$card .= "</div>";//card
+
+	return $card;
+}
 function get_news_marquee_card($id, $hide_cat = false){
 	$lang      = apply_filters( 'wpml_current_language', NULL );
 	$title     = get_the_title($id);
