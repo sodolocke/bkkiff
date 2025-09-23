@@ -12,9 +12,11 @@ function post_settings_inner_custom_box($post) {
 	wp_nonce_field( 'n4d_page_meta_box', 'n4d_page_meta_box_nonce' );
 
 	$bg_color     = get_post_meta($post->ID, "_bg_color", true);
+	$bg_text      = get_post_meta($post->ID, "_bg_text", true);
 
-	$checked = ($bg_color) ? " checked=\"checked\"" : "";
-	echo "<label>Banner Background Color<br /><input type=\"text\" name=\"bg_color\" value=\"{$bg_color}\" style=\"width:100%;\"{$checked} /></label><br />";
+	echo "<label>Banner Background Color<br /><input type=\"text\" name=\"bg_color\" value=\"{$bg_color}\" style=\"width:100%;\" /></label><br />";
+	$checked = ($bg_text) ? " checked=\"checked\"" : "";
+	echo "<label>Banner Title Text<br /><input type=\"checkbox\" name=\"bg_text\" value=\"1\"{$checked} /></label><br />";
 
 //NOTES
 /*
@@ -48,7 +50,7 @@ function post_settings_save_postdata( $post_id, $post, $update ) {
 	// Check the user's permissions.
 	if ( ! current_user_can( 'edit_post', $post_id ) ) return;
 
-	$vars = array("bg_color", "title_split", "overlap_hide", "margin_none", "bg_fixed");
+	$vars = array("bg_color", "bg_text");
 
 	foreach($vars as $item){
 		if ( isset( $_POST[$item] ) ){

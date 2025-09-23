@@ -3035,6 +3035,8 @@ registerBlockType( 'n4d/timeline', {
 
 		if (hideLine) section_class += " hideLine"
 
+		let entry = (description) ? description.split('\n').join("<br />") : ""
+
 		return (
 			<div id={section_id} className={section_class} data-target={link}>
 			{!steps &&
@@ -3042,7 +3044,7 @@ registerBlockType( 'n4d/timeline', {
 					<div className="col-12 col-lg-3">
 						<div className="time">
 							<h5 className="title">{time}</h5>
-							<div className="entry" dangerouslySetInnerHTML={{__html:description.split('\n').join("<br />")}}></div>
+							<div className="entry" dangerouslySetInnerHTML={{__html:entry}}></div>
 						</div>
 					</div>
 					<div className="col-12 col-lg-9">

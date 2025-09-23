@@ -597,6 +597,9 @@
 
 	&.steps {
 		border: 1px solid transparent;
+		border-bottom: 1px solid $black;
+		padding-bottom: 3rem;
+
 		&:before {
 			display: none;
 		}
@@ -607,6 +610,7 @@
 			width: 2px;
 			background-color: $gray-200;
 			z-index: 0;
+			display: none;
 		}
 
 		.step {
@@ -619,8 +623,8 @@
 				display: block;
 				width: 40px;
 				height: 40px;
-				border: 2px solid $gray-200;
-				background-color: $gray-200;
+				border: 2px solid $black;
+				background-color: black;
 				left: 5px;
 				top: 5px;
 				border-radius: 50%;
@@ -1285,6 +1289,8 @@
 		}
 	}
 	.wp-block-n4d-timeline {
+//		width: calc(100% - 1.5rem);
+
 		.time {
 			padding-left: 45px;
 			margin-bottom: 15px;
@@ -1294,9 +1300,12 @@
 		}
 		&.steps {
 			.step {
+				width: calc(100% - 60px);
+				padding: 10px 0 0 20px;
 
 				.content {
 					padding-left: 0;
+					word-break: break-all;
 				}
 
 			}
@@ -1576,7 +1585,11 @@
 
 	}
 
+
+
 	.wp-block-n4d-row {
+
+
 		&.credits-row {
 			.wp-block-n4d-col.col {
 				flex: 50% 0 0;

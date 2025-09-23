@@ -7,7 +7,7 @@
       "uuidString" : "280F7D75-9BB4-4BCF-897F-04B25D7290D0"
     }
   ],
-  "creatorBuild" : "34704",
+  "creatorBuild" : "34892",
   "files" : {
     "\/assets\/css\/editor.css" : {
       "aP" : 1,
@@ -1050,6 +1050,9 @@
         "active" : 0,
         "optionString" : "{'skipBlankLines': false, 'ignoreComments': false}"
       },
+      "no-unassigned-vars" : {
+        "active" : 0
+      },
       "no-undef" : {
         "active" : 1,
         "optionString" : "{'typeof': false}"
@@ -1130,7 +1133,8 @@
         "active" : 0
       },
       "no-useless-escape" : {
-        "active" : 1
+        "active" : 1,
+        "optionString" : "{'allowRegexCharacters': []}"
       },
       "no-useless-rename" : {
         "active" : 0,

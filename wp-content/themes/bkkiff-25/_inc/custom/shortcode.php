@@ -98,6 +98,8 @@ function n4d_galleries_shortcode($attributes = null, $content = null){
 	$items = get_posts( $args );
 
 	$html  = "";
+
+
 	$html .= "<div class=\"row g-3\">";
 
 	$c = 0;
@@ -146,6 +148,9 @@ function render_galleries($attributes = null, $content = null){
 		"parent"     => false,
 		"dark_mode"  => false,
 		"column"     => 2,
+		"taxonomy"   => "galleries",
+		"term"       => ( isset($_GET['galleries']) ) ? $_GET['galleries'] : false,
+		"month"      => ( isset($_GET['month']) ) ? $_GET['month'] : false,
 	);
 
 	$attributes = shortcode_atts( $default_attributes, $attributes );
@@ -157,9 +162,68 @@ function render_galleries($attributes = null, $content = null){
 		"suppress_filters" => false
 	);
 
+	if ($attributes["term"]){
+		$args["tax_query"] = array(
+			array(
+				"taxonomy" => $attributes['taxonomy'],
+				"field"    => "term_id",
+				"terms"    => $attributes["term"]
+			)
+		);
+	}
+
+	if ($attributes["month"]){
+		$year = substr($attributes["month"], 0, 4);
+		$month = substr($attributes["month"], 4, 2);
+
+		if ($year && $month){
+			$args['date_query'] = array(
+				array(
+					'year'  => $year,
+					'month' => $month
+				),
+			);
+		}
+	}
+
 	$items = get_posts( $args );
 
 	$html  = "";
+	$html .= "<form class=\"filter-gallery\">";
+
+	$options = wp_get_archives(array(
+		'type'            => 'monthly',
+		'format'          => 'option',
+		'post_type'       => 'gallery',
+		'echo'            => false
+	));
+
+
+	$options = str_replace("&#038;post_type=gallery", "", $options);
+	$options = str_replace("?", "", $options);
+	if (isset($_GET['month'])){
+		$options = str_replace("'month={$_GET['month']}'",  "'month={$_GET['month']}' selected", $options);
+	}
+
+
+	$html .= "<select class=\"form-select\"><option value=\"-1\">Month</option>{$options}</select>";
+
+	$types = get_terms(array(
+		"taxonomy" => "galleries",
+		"hide_empty" => false,
+	));
+
+
+
+	$options = "";
+
+	foreach($types as $type){
+		$selected = ( isset($_GET['galleries']) && $type->term_id == $_GET['galleries'] ) ? " selected" : "";
+		$options .= "<option value=\"?galleries={$type->term_id}\"{$selected}>{$type->name}</option>";
+	}
+
+	$html .= "<select class=\"form-select\"><option value=\"-1\">Theme</option>{$options}</select>";
+	$html .= "</form>";
 	$html .= "<div class=\"row g-3\">";
 
 	$c = 0;

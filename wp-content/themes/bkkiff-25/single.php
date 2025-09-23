@@ -45,7 +45,19 @@ $html .= "</ul>";
 
 $html .= "<div class=\"card-date mb-4\">{$date}</div>";
 
+$html .= "<div class=\"banner-single\">";
+$html .= "<div class=\"container\">";
+$html .= "<div class=\"col-12 col-lg-8 offset-lg-2\">";
 $html .= ($img_id) ? wp_get_attachment_image( $img_id, 'large', false, array( "class" => "mb-4")) : "";
+
+
+$html .= "<div class=\"prev\">".get_previous_post_link("%link","Previous News")."</div>";
+$html .= "<div class=\"next\">".get_next_post_link("%link","Next News")."</div>";
+
+$html .= "</div>";//col
+$html .= "</div>";//container
+$html .= "</div>";//banner
+
 
 $html .= n4d_get_share($id);
 

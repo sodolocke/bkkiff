@@ -106,6 +106,7 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 	$hasMarquee = false;
 	$html       = "";
 	$bg_color   = get_post_meta($id, "_bg_color", true);
+	$bg_text    = get_post_meta($id, "_bg_text", true);
 	$split      = get_post_meta($id, "_title_split", true);
 	$overlap    = (get_post_type() == "project" && is_single()) ? true : get_post_meta($id, "_overlap_hide", true);
 	$nomargin   = get_post_meta($id, "_margin_none", true);
@@ -128,7 +129,6 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 
 	if ($bannerM_id) {
 		$bannerM = wp_get_attachment_image_src($bannerM_id, "full");
-
 
 		$image  = "<picture class=\"banner-m-image\">";
 		$image .= "<source media=\"(max-width:768px)\" srcset=\"{$bannerM[0]}\">";
@@ -159,19 +159,6 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 		$title_class  = "marquee-title";
 		$title_class .= ($filters !== "" && $nav) ? " px-lg-5" : "";
 
-		if ($img_id && $caption){
-			$caption = "<blockquote class=\"large-quote\">".apply_filters("the_content", $caption)."</blockquote>";
-			$title_class = "fade";
-		}
-
-		if ($split){
-			$title_obj = explode(" ", $title);
-			if (sizeof($title_obj) > 1){
-				$title_obj[0] = "<small>{$title_obj[0]}</small>";
-			}
-			$title = implode(" ", $title_obj);
-		}
-
 //		$title = "<h1 class=\"{$title_class}\">{$title}</h1>";
 
 		$html .= "<div class=\"entry\">";
@@ -180,12 +167,14 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 		$control_class = ($nav) ? " hasNav" : "";
 		if ($nav){
 			$html .= "<nav class=\"mobile-slide\">{$nav}</nav>";
-		}
-		else {
 		};
 		$html .= "</div>";
-		$html .= $filters;//"<div class=\"filters\">{$filters}</div>";
+		$html .= $filters;
 
+		if ($bg_text){
+			$html .= "<h1 class=\"page-title uc px-5\">{$title}</h1>";
+
+		}
 
 		$html .= "</div>";
 
@@ -195,7 +184,7 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 	}
 	else {
 		$html .= "<div class=\"marquee blank\"{$style}>";
-		$html .= "<h2 class=\"page-title uc px-5\">{$title}</h2>";
+		$html .= "<h1 class=\"page-title uc px-5\">{$title}</h1>";
 		$html .= "</div>";
 	}
 

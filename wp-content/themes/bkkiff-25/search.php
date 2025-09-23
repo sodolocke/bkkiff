@@ -12,7 +12,7 @@ $html  = "";
 $html .= "<main class=\"container pb-5\">";
 $html .= "<article class=\"content-area\">";
 
-$html .= "<header class=\"page-header\">";
+$html .= "<header class=\"page-header my-5\">";
 $html .= "<h1 class=\"page-title sm\">".sprintf( __( 'ผลการค้นหาสำหรับ <em>%s</em>', 'shape' ), '<span>' . get_search_query() . '</span>' )."</h1>";
 $html .= "</header>";
 
@@ -28,7 +28,7 @@ $html .= "</header>";
 		$html .= "<p class=\"card-text\">".get_the_excerpt($id)."</p>";
 		$html .= "</div>";
 		$html .= "<div class=\"card-footer\">";
-		$html .= "<a href=\"{$url}\" class=\"btn btn-primary\">อ่านเพิ่มเติม</a>";
+		$html .= "<a href=\"{$url}\" class=\"btn btn-dark\">อ่านเพิ่มเติม</a>";
 		$html .= "</div>";
 
 

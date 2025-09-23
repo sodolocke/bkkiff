@@ -89,6 +89,40 @@ class n4d {
 				cf7wrap.appendChild(wrapper)
 			} )
 		}
+
+		const filters = document.querySelector(".filter-gallery")
+		if (filters){
+			const selects = filters.querySelectorAll("select")
+			selects.forEach(select => {
+				select.addEventListener("change", e => {
+					let qstr = []
+
+					selects.forEach(form => {
+						let tmp = form.value.replace("?", "")
+						let values = tmp.split("&")
+						values.forEach(value => {
+							let data = value.split("=")
+							if (data.length == 2 && data[0] !== "post_type"){
+								qstr[data[0]] = data[1]
+							}
+						})
+					})
+
+console.log(window.location, window.location.href)
+
+					window.location.href = window.location.pathname+"?"+this.serialize(qstr)
+				})
+			})
+		}
+
+	}
+	serialize(obj) {
+	  var str = [];
+	  for (var p in obj)
+		if (obj.hasOwnProperty(p)) {
+		  str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+		}
+	  return str.join("&");
 	}
 	popup(){
 		const splash = document.querySelector("#modal-splash")
