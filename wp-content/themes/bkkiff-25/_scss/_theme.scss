@@ -490,7 +490,8 @@ h1,h2,h3,h4,h5,h6{
 		}
 	}
 
-	&.gallery {
+	&.gallery,
+	&.image {
 		.modal-dialog {
 			width: 100%;
 			max-width: 100%;
@@ -523,6 +524,13 @@ h1,h2,h3,h4,h5,h6{
 						color: $gold;
 					}
 
+					.carousel-inner {
+						height: 100%;
+
+						.carousel-item {
+							height: 100%;
+						}
+					}
 
 					.galleries {
 						height: 100%;

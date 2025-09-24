@@ -108,8 +108,6 @@ class n4d {
 						})
 					})
 
-console.log(window.location, window.location.href)
-
 					window.location.href = window.location.pathname+"?"+this.serialize(qstr)
 				})
 			})
@@ -125,6 +123,7 @@ console.log(window.location, window.location.href)
 	  return str.join("&");
 	}
 	popup(){
+		const images = []
 		const splash = document.querySelector("#modal-splash")
 		if (splash){
 			setTimeout(function(){
@@ -143,11 +142,13 @@ console.log(window.location, window.location.href)
 			body.innerHTML = ""
 
 
+			popup.classList.remove("gallery")
+			popup.classList.remove("image")
+
 			switch(mode){
 				case "gallery":
 					popup.classList.add("gallery")
 					if (id){
-
 						body.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>'
 
 						fetch('/wp-json/n4d/v1/gallery/'+id, {
@@ -165,14 +166,105 @@ console.log(window.location, window.location.href)
 							body.innerHTML = data.html
 						});
 					}
-
-
-console.log(id)
+				break;
+				case "image":
+					popup.classList.add("image")
+					body.innerHTML = '<div class="spinner-border" role="status"><span class="visually-hidden">Loading...</span></div>'
+					this.createGallery(popup, images, trigger.dataset.index)
 				break;
 			}
 
 console.log('popup', mode)
 		})
+
+		const pop_images = document.querySelectorAll(".wp-block-image a[target='_blank']")
+		if (pop_images){
+			pop_images.forEach((link, index) => {
+
+				link.setAttribute("data-bs-toggle", "modal")
+				link.setAttribute("data-bs-target", "#popup-modal")
+				link.dataset.mode = "image"
+				link.dataset.index = index
+				link.dataset.src   = link.href
+
+				images.push(link.href)
+
+				link.removeAttribute("href")
+			})
+		}
+
+	}
+	createGallery(popup, images, selected){
+		const body     = popup.querySelector(".modal-body")
+
+		body.innerHTML = ""
+
+		const carousel = document.createElement("div")
+		carousel.id = "popup-gallery"
+		carousel.classList.add("carousel")
+		carousel.classList.add("slide")
+		carousel.classList.add("gallery-carousel")
+		carousel.style.height = (window.innerHeight - 30)+"px"
+
+		const inner = document.createElement("div")
+		inner.classList.add("carousel-inner")
+
+		images.forEach((url, i) => {
+			let item  = document.createElement("div")
+			item.classList.add("carousel-item")
+			if (i == selected) item.classList.add("active")
+
+			let image = document.createElement("img")
+			image.src = url
+
+			let wrap  = document.createElement("div")
+			wrap.classList.add("ratio-wrap")
+
+			let figure  = document.createElement("figure")
+
+			let ratio  = document.createElement("div")
+			ratio.classList.add("ratio")
+			ratio.classList.add("ratio-4x3")
+
+/*
+			ratio.append(image)
+			figure.append(ratio)
+			wrap.append(figure)
+			item.append(wrap)
+*/
+			item.append(image)
+			inner.append(item)
+		})
+
+
+
+
+		const prev = document.createElement("button")
+		prev.classList.add("carousel-control-prev")
+		prev.setAttribute("type", "button")
+		prev.setAttribute("data-bs-target", "#popup-gallery")
+		prev.setAttribute("data-bs-slide", "prev")
+
+		const prev_icon = document.createElement("span")
+		prev_icon.classList.add("carousel-control-prev-icon")
+
+		const next = document.createElement("button")
+		next.classList.add("carousel-control-next")
+		next.setAttribute("type", "button")
+		next.setAttribute("data-bs-target", "#popup-gallery")
+		next.setAttribute("data-bs-slide", "next")
+
+		const next_icon = document.createElement("span")
+		next_icon.classList.add("carousel-control-next-icon")
+
+		prev.append(prev_icon)
+		next.append(next_icon)
+
+		carousel.append(inner)
+		carousel.append(prev)
+		carousel.append(next)
+
+		body.append(carousel)
 	}
 	initNav(){
 		let lastScrollTop = 0;
