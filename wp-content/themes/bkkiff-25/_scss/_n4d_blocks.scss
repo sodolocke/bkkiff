@@ -578,6 +578,9 @@
 
 	}
 
+	.row {
+		flex-grow: 1;
+	}
 
 	.time {
 		padding-left: 60px;
@@ -638,8 +641,13 @@
 		}
 	}
 	&.hideLine {
+		&:before,
 		&:after {
 			display: none;
+		}
+		.time {
+			padding-left: 0;
+			font-size: $font-size-sm;
 		}
 	}
 }
@@ -1057,6 +1065,46 @@
 			}
 		}
 	}
+
+	&.schedule {
+		table {
+			tbody {
+				td,th {
+					border-color: #EEE;//;$white;
+//					background-color: #EEE;
+
+					&:first-child {
+						white-space: nowrap;
+						min-width: 150px;
+					}
+
+					&[colspan='2'] {
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
+	&.exhibitors {
+		table {
+			tbody {
+				td,th {
+					border-color: $white;
+					background-color: $navigation-bg;
+
+					&:first-child {
+						white-space: nowrap;
+						width: 100px;
+						background-color: $theme-lighter;
+					}
+
+					&[colspan='2'] {
+						text-align: center;
+					}
+				}
+			}
+		}
+	}
 }
 
 .wp-block-embed {
@@ -1171,6 +1219,48 @@
 		}
 		.card-title {
 			font-size: $h4-font-size;
+		}
+	}
+	&.download {
+		border: none;
+		border-radius: 0;
+		background-color: #e8e5de;
+
+		.card-image {
+			position: relative;
+			padding: 0 0 52.44%;
+
+			img {
+				position: absolute;
+				top: 1.5rem;
+				left: 1.5rem;
+				width: calc(100% - 3rem);
+				height: calc(100% - 3rem);
+				object-fit: contain;
+			}
+		}
+		.card-body {
+			display: none;
+		}
+		.card-footer {
+			border: none;
+			padding: 0;
+
+			.btn {
+				width: 100%;
+				background-color: $black;
+				color: $white;
+				font-size: $font-size-sm;
+			}
+		}
+
+		&.dark {
+			background-color: #e3d9c7;
+		}
+		&.square {
+			.card-image {
+				padding-bottom: 100%;
+			}
 		}
 	}
 }

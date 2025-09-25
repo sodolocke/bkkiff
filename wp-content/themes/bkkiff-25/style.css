@@ -22260,6 +22260,23 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   justify-content: center;
   align-items: center;
 }
+.box-square-colored .col-wrap .wp-block-heading {
+  line-height: 1;
+}
+.box-square-colored.top {
+  background-position: bottom;
+}
+.box-square-colored.top .col-wrap {
+  margin: 0 -0.75rem;
+  padding: 5rem;
+  width: calc(100% + 1.5rem);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+.box-square-colored.top.large .col-wrap {
+  padding: 5rem 5rem 5rem;
+}
 
 .box-text {
   padding: 10%;
@@ -23248,6 +23265,9 @@ figure figcaption {
   .news-marquee .carousel-indicators {
     left: 0;
   }
+  .wp-block-image .is-resized img {
+    height: auto !important;
+  }
 }
 .navbar {
   display: flex;
@@ -23371,7 +23391,7 @@ figure figcaption {
   }
 }
 .navbar .nav-wrap .navbar-collapse .navbar-nav .nav-item .dropdown-menu.show:before {
-  height: 200px;
+  height: 250px;
 }
 .navbar .nav-wrap .navbar-collapse .navbar-nav .nav-item .dropdown-menu .nav-item {
   padding: 0.5rem;
@@ -24171,6 +24191,9 @@ figure figcaption {
   width: 2px;
   background-color: #666666;
 }
+.wp-block-n4d-timeline .row {
+  flex-grow: 1;
+}
 .wp-block-n4d-timeline .time {
   padding-left: 60px;
   height: 100%;
@@ -24221,8 +24244,12 @@ figure figcaption {
   color: #fff;
   z-index: 10;
 }
-.wp-block-n4d-timeline.hideLine:after {
+.wp-block-n4d-timeline.hideLine:before, .wp-block-n4d-timeline.hideLine:after {
   display: none;
+}
+.wp-block-n4d-timeline.hideLine .time {
+  padding-left: 0;
+  font-size: 0.9625rem;
 }
 
 .wp-block-n4d-container p:last-child {
@@ -24536,6 +24563,28 @@ figure figcaption {
 .wp-block-table.credits table tr td:first-child {
   width: 60%;
 }
+.wp-block-table.schedule table tbody td, .wp-block-table.schedule table tbody th {
+  border-color: #EEE;
+}
+.wp-block-table.schedule table tbody td:first-child, .wp-block-table.schedule table tbody th:first-child {
+  white-space: nowrap;
+  min-width: 150px;
+}
+.wp-block-table.schedule table tbody td[colspan="2"], .wp-block-table.schedule table tbody th[colspan="2"] {
+  text-align: center;
+}
+.wp-block-table.exhibitors table tbody td, .wp-block-table.exhibitors table tbody th {
+  border-color: #fff;
+  background-color: #EBE8E2;
+}
+.wp-block-table.exhibitors table tbody td:first-child, .wp-block-table.exhibitors table tbody th:first-child {
+  white-space: nowrap;
+  width: 100px;
+  background-color: #E7DECD;
+}
+.wp-block-table.exhibitors table tbody td[colspan="2"], .wp-block-table.exhibitors table tbody th[colspan="2"] {
+  text-align: center;
+}
 
 .wp-block-n4d-collapse {
   position: relative;
@@ -24622,6 +24671,43 @@ figure figcaption {
 }
 .wp-block-n4d-card.feature .card-title {
   font-size: 1.65rem;
+}
+.wp-block-n4d-card.download {
+  border: none;
+  border-radius: 0;
+  background-color: #e8e5de;
+}
+.wp-block-n4d-card.download .card-image {
+  position: relative;
+  padding: 0 0 52.44%;
+}
+.wp-block-n4d-card.download .card-image img {
+  position: absolute;
+  top: 1.5rem;
+  left: 1.5rem;
+  width: calc(100% - 3rem);
+  height: calc(100% - 3rem);
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+.wp-block-n4d-card.download .card-body {
+  display: none;
+}
+.wp-block-n4d-card.download .card-footer {
+  border: none;
+  padding: 0;
+}
+.wp-block-n4d-card.download .card-footer .btn {
+  width: 100%;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.9625rem;
+}
+.wp-block-n4d-card.download.dark {
+  background-color: #e3d9c7;
+}
+.wp-block-n4d-card.download.square .card-image {
+  padding-bottom: 100%;
 }
 
 .accordion.overflow {

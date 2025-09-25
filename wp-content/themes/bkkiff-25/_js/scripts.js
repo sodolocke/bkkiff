@@ -177,7 +177,7 @@ class n4d {
 console.log('popup', mode)
 		})
 
-		const pop_images = document.querySelectorAll(".wp-block-image a[target='_blank']")
+		const pop_images = document.querySelectorAll(".popup-gallery .wp-block-image a[target='_blank']")
 		if (pop_images){
 			pop_images.forEach((link, index) => {
 
@@ -192,6 +192,15 @@ console.log('popup', mode)
 				link.removeAttribute("href")
 			})
 		}
+//
+		const downloads = document.querySelectorAll(".wp-block-image.download a, .wp-block-n4d-card.download a")
+		if (downloads){
+			downloads.forEach(link => {
+				link.setAttribute("download", "")
+			})
+		}
+
+
 
 	}
 	createGallery(popup, images, selected){

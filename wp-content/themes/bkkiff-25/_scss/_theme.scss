@@ -14,6 +14,9 @@ a {
 h1,h2,h3,h4,h5,h6{
 	font-weight: 500;
 }
+
+
+
 .content-area {
 	&.page {
 		padding: 3rem 0 9rem;
@@ -176,6 +179,29 @@ h1,h2,h3,h4,h5,h6{
 		text-align: center;
 		justify-content: center;
 		align-items: center;
+
+		.wp-block-heading {
+			line-height: 1;
+		}
+	}
+
+	&.top {
+		background-position: bottom;
+
+		.col-wrap {
+			margin: 0 -0.75rem;
+			padding: 5rem;
+			width: calc(100% + 1.5rem);
+			text-align: center;
+			justify-content: center;
+			align-items: center;
+		}
+
+		&.large {
+			.col-wrap {
+				padding: 5rem 5rem 5rem;
+			}
+		}
 	}
 
 }
@@ -1378,6 +1404,14 @@ figure{
 
 		.carousel-indicators {
 			left: 0;
+		}
+	}
+
+	.wp-block-image {
+		.is-resized {
+			img {
+				height: auto !important;
+			}
 		}
 	}
 
