@@ -5,6 +5,7 @@ import { Alert, Button, Carousel, Collapse, Dropdown, Modal } from 'bootstrap'; 
 //import ScrollToPlugin from "gsap/ScrollToPlugin.js" //quiet
 import gsap from 'gsap' //quiet
 import {BProgress} from '@bprogress/core' //quiet
+import Xwiper from 'xwiper' //quiet
 
 const bootstrap = {
 	Alert,
@@ -44,31 +45,8 @@ class n4d {
 		if (this.navigation) this.initNav()
 
 		this.popup()
+		this.createSlider()
 
-		const searchBox = document.querySelector("#search-box")
-		if (searchBox) {
-			const searchCollapse = new bootstrap.Collapse('#collapseSearch', {
-				toggle: false
-			})
-
-			searchBox.addEventListener("mouseenter", e => {
-				const search = e.target.querySelector("#s")
-				if (searchCollapse){
-					searchCollapse.show()
-					setTimeout( e => {
-						search.focus()
-					}, 400)
-				}
-				console.log('over')
-			})
-			searchBox.addEventListener("mouseleave", e => {
-				const search = e.target.querySelector("#s")
-
-				if (searchCollapse && !search.hasFocus()){
-					searchCollapse.hide()
-				}
-			})
-		}
 
 		const cf7Floating = document.querySelectorAll(".wpcf7-form .form-floating")
 		if (cf7Floating){
@@ -274,6 +252,54 @@ console.log('popup', mode)
 		carousel.append(next)
 
 		body.append(carousel)
+	}
+	createSlider(){
+		const sliders = document.querySelectorAll(".n4d-slider")
+		if (sliders){
+			const xwipers = []
+
+			sliders.forEach( (slider, index) => {
+				const prev   = slider.querySelector(".control.prev")
+				const next   = slider.querySelector(".control.next")
+				const stage  = slider.querySelectorAll(".slides")
+				const slides = slider.querySelectorAll(".slide")
+				const limit  = (slides) ? (slides.length - Math.floor(slider.offsetWidth/slides[0].offsetWidth) ) : 0//slides.length - 1
+
+				if (prev){
+					prev.addEventListener("click", e => {
+						if (slider.dataset.current > 0 ) {
+							slider.dataset.current--
+						}
+
+						const target = slider.querySelectorAll(`.slide[data-index="${slider.dataset.current}"]`)
+						gsap.to(stage, { left: -((target[0]) ? target[0].offsetLeft : 0), duration: 0.4, ease: "power1.out" });
+					})
+				}
+				if (next){
+					next.addEventListener("click", e => {
+						if (slider.dataset.current < limit ) {
+							slider.dataset.current++
+						}
+
+						const target = slider.querySelectorAll(`.slide[data-index="${slider.dataset.current}"]`)
+						gsap.to(stage, { left: -(target[0].offsetLeft), duration: 0.4, ease: "power1.out" });
+					})
+				}
+
+				xwipers[index] =  new Xwiper(slider);
+				if (xwipers[index]){
+					xwipers[index].onSwipeLeft(() => {
+						const target = slider.querySelector(".control.next")
+						if (target) target.click()
+					});
+					xwipers[index].onSwipeRight(() => {
+						const target = slider.querySelector(".control.prev")
+						if (target) target.click()
+					});
+				}
+			} )
+		}
+
 	}
 	initNav(){
 		let lastScrollTop = 0;

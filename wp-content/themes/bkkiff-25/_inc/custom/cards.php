@@ -57,77 +57,6 @@ function get_projects_card($term, $dark_mode = false){
 
 	return $card;
 }
-function get_job_card($id, $show = false){
-	$taxonomy  = "jobs";
-	$title     = get_the_title($id);
-	$img_id    = get_post_thumbnail_id($id);
-	$url       = get_permalink($id);
-	$terms     = wp_get_post_terms($id, $taxonomy, array());
-	$lang     = apply_filters( 'wpml_current_language', NULL );
-
-
-	$location  = get_post_meta($id, "_location", true);
-	$days      = get_post_meta($id, "_days", true);
-	$type      = get_post_meta($id, "_type", true);
-
-	$card  = "";
-	$card .= "<div class=\"card job\">";
-
-	$expanded = ($show) ? true : false;
-	$shown    = ($show) ? " show" : "";
-
-	$card .= "<a class=\"card-trigger\" data-bs-toggle=\"collapse\" href=\"#job-{$id}-details\" role=\"button\" aria-expanded=\"{$expanded}\" aria-controls=\"job-{$id}-details\">{$title}<i class=\"fa-solid fa-chevron-down\"></i></a>";
-
-	$card .= "<div class=\"collapse{$shown}\" id=\"job-{$id}-details\">";
-	$card .= "<div class=\"card-body\">";
-
-	$card .= "<div class=\"row mb-5\">";
-
-	if ($location){
-		$card .= "<div class=\"wp-block-n4d-col col-12 col-md-4 line-right\">";
-		$card .= "<h6 class=\"wp-block-heading\"><strong>".__("WORK LOCATION", "sls")."</strong></h6>";
-		$card .= $location;
-		$card .= "</div>";
-	}
-
-	if ($days){
-		$card .= "<div class=\"wp-block-n4d-col col-12 col-md-4 line-right\">";
-		$card .= "<h6 class=\"wp-block-heading\"><strong>".__("WORKING DAY", "sls")."</strong></h6>";
-		$card .= $days;
-		$card .= "</div>";
-	}
-
-	if ($type){
-		$card .= "<div class=\"wp-block-n4d-col col-12 col-md-4\">";
-		$card .= "<h6 class=\"wp-block-heading\"><strong>".__("EMPLOYMENT TYPE", "sls")."</strong></h6>";
-		$card .= $type;
-		$card .= "</div>";
-	}
-
-	$card .= "</div>";//row
-
-
-
-
-
-	$card .= apply_filters("the_content", get_post_field("post_content", $id));
-
-	$card .= "<div class=\"row\">";
-
-	$card .= "<div class=\"col-12 col-md-9 col-lg-8 offset-md-3 offset-lg-4\">";
-	$prefix = ($lang == "th") ? "" : "/{$lang}";
-	$card .= "<a href=\"{$prefix}/careers/join/apply?j={$id}\" class=\"btn btn-primary btn-icon arrow\">APPLY NOW</a>";
-	$card .= "</div>";
-
-	$card .= "</div>";
-
-	$card .= "</div>";//body
-	$card .= "</div>";//collapse
-
-	$card .= "</div>";//card
-
-	return $card;
-}
 function get_post_card($id, $hide_cat = false){
 	$lang      = apply_filters( 'wpml_current_language', NULL );
 	$title     = get_the_title($id);
@@ -285,6 +214,46 @@ function get_news_marquee_card($id, $hide_cat = false){
 
 	$card .= "</div>";//row
 	$card .= "</div>";//card
+
+	return $card;
+}
+function get_film_card($id, $classes = "", $index = false){
+	//https://vp.eventival.com/bkkiff/2025/film/1168025
+
+	$vp_id     = get_post_meta($id, "_id", true);
+	$path      = "https://vp.eventival.com/bkkiff/2025/film/";
+
+	$title     = get_the_title($id);
+
+	$img_id    = get_post_thumbnail_id($id);
+	$url       = ($vp_id) ? "{$path}/{$vp_id}" :get_permalink($id);
+	$excerpt   = get_the_excerpt($id);
+
+	$taxonomy  = "category";
+	$terms     = wp_get_post_terms($id, $taxonomy, array());
+
+	$data_index = ($index) ? " data-index=\"{$index}\"" : "";
+
+	$card  = "";
+	$card .= "<a href=\"{$url}\" class=\"card film{$classes}\"{$data_index}>";
+
+
+	$card .= "<div class=\"card-image\">";
+	$card .= ($img_id) ? wp_get_attachment_image( $img_id, 'large', false, array()) : "";
+	$card .= "</div>";
+
+	$card .= "<div class=\"card-body\">";
+	$card .= "<h4 class=\"card-title\">{$title}</h4>";
+	$card .= "<div class=\"card-excerpt\">";
+	$card .= get_the_excerpt($id);
+
+
+	$card .= "</div>";//excerpt
+	$card .= "<div class=\"btn btn-light\">View Info</div>";
+	$card .= "</div>";//body
+
+
+	$card .= "</a>";//card
 
 	return $card;
 }

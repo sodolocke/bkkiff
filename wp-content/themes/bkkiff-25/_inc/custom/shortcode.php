@@ -3,7 +3,79 @@ add_shortcode( 'n4d_news', 'render_news' );
 add_shortcode('n4d_news', 'n4d_news_carousel');
 add_shortcode('n4d_carousel', 'n4d_carousel_shortcode');
 add_shortcode('n4d_galleries', 'render_galleries');
+add_shortcode('n4d_films', 'render_films');
 
+function render_films($attributes = null, $content = null){
+	global $wp_query, $exclude;
+	$paged        = get_query_var('paged');
+	$qa           = [];
+	$prefix       = "";
+	$slug         = get_query_var("films");
+	$slug         = ($slug) ? "{$slug}/" : "";
+
+	$default_attributes = array(
+		"ids"        => false,
+		"exclude"    => ($exclude) ? $exclude : [],
+		"page"       => ($paged) ? $paged : 0,
+		"home"       => "/",
+		"limit"      => get_option( 'posts_per_page' ),
+		"pagniation" => false,
+		"slugs"      => false,
+		"s"          => false,
+		"parent"     => false,
+		"dark_mode"  => false,
+		"column"     => 2,
+	);
+
+	$attributes = shortcode_atts( $default_attributes, $attributes );
+
+	$args       = array(
+		"post_type"        => "film",
+		"posts_per_page"   => $attributes["limit"],
+		"fields"           => "ids",
+		"suppress_filters" => false,
+		"order"            => "ASC",
+		"orderby"          => "rand",
+		"meta_query"       => array(
+			array(
+				"key" => "_thumbnail_id",
+			)
+		)
+	);
+
+	$items = get_posts( $args );
+
+	$html  = "";
+	$all   = "";
+
+//	$slug = $term;
+//	$term = get_term_by("slug", $slug, $taxonomy);
+
+	$all   = "<a href=\"https://vp.eventival.com/bkkiff/2025/film-catalogue\" class=\"all btn btn-outline-dark\">View All</a>";
+	$html .= "<div class=\"container\"><h2 class=\"slide-title\">FILMS{$all}</h2></div>";
+	$html .= "<div class=\"n4d-slider\" data-current=\"0\">";
+
+	$html .= "<div class=\"mask\">";
+	$html .= "<div class=\"track\">";
+	$html .= "<div class=\"slides\">";
+	foreach($items as $key => $item_id){
+		$html .= get_film_card($item_id, " slide", $key);
+	}
+	$html .= "</div>";//slides
+	$html .= "</div>";//track
+	$html .= "</div>";//mask
+
+
+	if (sizeof($items) > 1){
+		$html .= "<a class=\"control prev\"></a>";
+		$html .= "<a class=\"control next\"></a>";
+	}
+
+	$html .= "</div>";
+
+
+	return $html;
+}
 function render_news($attributes = null, $content = null){
 	global $wp_query, $exclude;
 	$paged        = get_query_var('paged');
@@ -124,9 +196,6 @@ function n4d_galleries_shortcode($attributes = null, $content = null){
 
 	return $html;
 }
-
-
-
 function render_galleries($attributes = null, $content = null){
 	global $wp_query, $exclude;
 	$paged        = get_query_var('paged');
@@ -248,8 +317,6 @@ function render_galleries($attributes = null, $content = null){
 
 	return $html;
 }
-
-
 function n4d_news_carousel($attributes = null, $content = null) {
 	$lang         = apply_filters( 'wpml_current_language', NULL );
 	$prefix       = ($lang == "en") ? "" : $lang;
@@ -257,12 +324,15 @@ function n4d_news_carousel($attributes = null, $content = null) {
 
 	$default_attributes = array(
 		"ids"        => false,
-		"exclude"    => ($exclude) ? $exclude : [],
-		"page"       => ($paged) ? $paged : 0,
+		"exclude"    => [],
+		"page"       => 0,
 		"home"       => "{$prefix}/category/news",
 		"limit"      => 9,
 		"title"      => "News",
-		"more"       => true
+		"more"       => true,
+		"autoplay"   => false,
+		"indicatorsthumbnails" => false,
+		"indicatorsthumbnailscontain" => false
 	);
 
 	$attributes = shortcode_atts( $default_attributes, $attributes );
@@ -283,7 +353,6 @@ function n4d_news_carousel($attributes = null, $content = null) {
 	$html          = "";
 	$gallery       = "";
 	$gClass        = "";
-	$gClass       .= ($classname) ? " {$classname}" : "";
 	$autoplay_att  = ($autoplay) ? " data-bs-ride=\"carousel\"" : "";
 	$indicators    = ( sizeof($ids) > 0 ) ? true : false;
 

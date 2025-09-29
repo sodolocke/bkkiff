@@ -132,7 +132,7 @@ add_filter('excerpt_length', 'n4d_excerpt_length');
  * Enqueue scripts and styles.
  */
 function bkkiff_scripts() {
-	$version = '0.1.7';
+	$version = '0.1.8';
 //DEREGISTER
 	wp_deregister_script( 'wp-embed' );
 	wp_dequeue_script('google-recaptcha');
@@ -219,8 +219,10 @@ require get_template_directory() . '/_inc/custom/mb.php';
 require get_template_directory() . '/_inc/custom/company-information.php';
 require get_template_directory() . '/_inc/custom/uri.php';
 require get_template_directory() . '/_inc/custom/rest.php';
+require get_template_directory() . '/_inc/custom/ajax.php';
 require get_template_directory() . '/_inc/custom/kdmfi.php';
 require get_template_directory() . '/_inc/cpt/gallery.php';
+require get_template_directory() . '/_inc/cpt/film.php';
 
 add_filter( 'wp_calculate_image_sizes', '__return_false' );
 add_filter( 'month_link', function($monthlink, $year, $month){

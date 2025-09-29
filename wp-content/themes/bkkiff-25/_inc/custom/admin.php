@@ -1,11 +1,10 @@
 <?php
-add_filter("manage_edit-project_columns", "admin_columns_project");
-add_filter("manage_edit-member_columns", "admin_columns_member");
+add_filter("manage_edit-film_columns", "admin_columns_film");
 add_filter("manage_edit-job_columns", "admin_columns_job");
 add_action("manage_posts_custom_column", "n4d_admin_columns");
 add_action("manage_pages_custom_column", "n4d_admin_columns");
 
-function admin_columns_project($columns){
+function admin_columns_film($columns){
 	$new_columns = [];
 	foreach($columns as $key => $value){
 		if ($key == "title") {
@@ -13,7 +12,7 @@ function admin_columns_project($columns){
 		}
 		$new_columns[$key] = $value;
 		if ($key == "title") {
-			$new_columns["projects"] = "Type";
+//			$new_columns["projects"] = "Type";
 //			$new_columns["rooms"] = "Room";
 		}
 	}
@@ -26,7 +25,7 @@ function n4d_admin_columns($column){
 	switch ($column){
 		case "thumbnail":
 			if( has_post_thumbnail($post->ID) ){
-				echo get_the_post_thumbnail($post->ID,'thumbnail' );
+				echo get_the_post_thumbnail($post->ID,'medium' );
 			}
 		break;
 		case "projects":

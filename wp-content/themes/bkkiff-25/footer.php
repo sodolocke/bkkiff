@@ -74,6 +74,7 @@
 	get_template_part("template-parts/modal/popup");
 	wp_footer();
 
+//	n4d_get_films(true);
 ?>
 </body>
 </html>

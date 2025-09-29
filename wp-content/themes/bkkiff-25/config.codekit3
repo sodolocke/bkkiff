@@ -9,12 +9,12 @@
   ],
   "creatorBuild" : "34892",
   "files" : {
-    "\/_inc\/cpt\/file.php" : {
+    "\/_inc\/cpt\/film.php" : {
       "cB" : 0,
       "ft" : 8192,
       "hM" : 0,
       "oA" : 0,
-      "oAP" : "\/_inc\/cpt\/file.php",
+      "oAP" : "\/_inc\/cpt\/film.php",
       "oF" : 0
     },
     "\/_inc\/cpt\/gallery.php" : {

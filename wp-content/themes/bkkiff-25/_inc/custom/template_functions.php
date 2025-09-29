@@ -112,6 +112,7 @@ function get_marquee($id = false, $filters = "", $nav = false, $title = false  )
 	$nomargin   = get_post_meta($id, "_margin_none", true);
 	$bannerM_id = false;
 	$style      = "";
+	$m_class    = "";
 
 	if ($bg_color){
 		$style .= "background-color: {$bg_color};";

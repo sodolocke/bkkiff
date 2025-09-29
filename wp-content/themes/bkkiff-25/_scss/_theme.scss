@@ -82,6 +82,13 @@ h1,h2,h3,h4,h5,h6{
 
 	&.btn-primary{
 		color: $white;
+		background-color: $black;
+		border-color: $black;
+	}
+	&.btn-light{
+		color: $black;
+		background-color: $white;
+		border-color: $white;
 	}
 }
 .box-square {
@@ -832,6 +839,78 @@ figure.wp-block-gallery {
 			}
 		}
 	}
+	&.film {
+		position: relative;
+		border-radius: 0;
+		margin-bottom: 1.5rem;
+		height: auto;
+		border: 1px solid transparent;
+		display: block;
+
+		.card-image {
+			position: relative;
+			background-color: $gray-100;
+
+			img {
+//				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				max-width: 100%;
+				height: auto;
+//				object-fit: cover;
+			}
+
+		}
+
+		&:hover {
+			.card-body {
+				opacity: 1;
+			}
+		}
+
+		.card-body {
+			@include transition(all 0.4s);
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			font-size: $font-size-sm;
+			background-color: rgba(0,0,0,0.75);
+			color: $white;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			flex-direction: column;
+			font-size: $font-size-xs;
+			opacity: 0;
+
+
+			.card-date {
+				font-size: $font-size-sm;
+				color: $gold;
+				margin-bottom: .75rem;
+			}
+			.card-title {
+				margin-bottom: 3rem;
+
+				a {
+					color: $black;
+					text-decoration: none;
+					font-weight: 400;
+
+					&:hover {
+						color: $theme-color;
+					}
+				}
+			}
+			.card-excerpt {
+				min-height: 80px;
+				margin-bottom: 1.5rem;
+			}
+		}
+	}
 	&.gallery {
 		border-radius: 0;
 		margin-bottom: 1.5rem;
@@ -1048,7 +1127,167 @@ figure.wp-block-gallery {
 		}
 	}
 }
+.slide-title {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
+	.all {
+		@include transition(color 0.4s);
+		font-size: $font-size-sm;
+		text-decoration: none;
+		color: $black;
+
+		&:hover {
+			color: $theme-color;
+		}
+	}
+}
+$slide-height: 420px;
+.n4d-slider {
+	display: flex;
+	position: relative;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: $slide-height;
+	margin: 0 0 3rem;
+	padding: 3rem 0;
+
+	.mask {
+		position: absolute;
+		top: 0;
+		left: calc((-1 * (100vw - 100%) / 2));
+		width: calc(100vw);
+		overflow: hidden;
+		padding: 0 0 0 calc((100vw - 100%) / 2);
+
+		.track {
+			position: relative;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			padding-left: 60px;
+
+			.slides {
+				position: relative;
+				display: flex;
+				flex-direction: row;
+				flex-wrap: nowrap;
+
+				.slide {
+					position: relative;
+					width: 300px;
+					height: auto;
+					margin: 0 0.75rem 0.75rem 0;
+					padding: 0;
+					overflow: hidden;
+
+					.slide-body {
+						@include transition(color 0.4s);
+						position: absolute;
+						top: 60%;
+						left: 0;
+						color: $white;
+						width: calc(100%);
+						height: calc(40%);
+						padding: 0 1.5rem 1.5rem;
+						background: linear-gradient(180deg,rgba(0, 0, 0, 0) -20%, rgba(0, 0, 0, 0.8) 100%);
+					}
+
+					.slide-image {
+						position: absolute;
+						width: 100%;
+						height: 100%;
+						top: 0;
+						left: 0;
+
+						img {
+							@include transition(filter 0.4s);
+							width: 100%;
+							height: 100%;
+							object-fit: cover;
+							filter: grayscale(100%);
+						}
+					}
+
+					&:hover {
+						.slide-body {
+							color: $theme-color;
+						}
+						.slide-image {
+							img {
+								filter: grayscale(0%);
+
+							}
+						}
+					}
+
+
+
+				}
+			}
+		}
+	}
+
+	.control {
+		@include transition(all 0.4s);
+		position: absolute;
+		top: 0%;
+		width: 40px;
+		height: calc(100% + 3rem);
+		display: block;
+		background-size: 50%;
+		background-repeat: no-repeat;
+		background-position: center;
+
+		&:before,
+		&:after {
+			content: "";
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 0;
+		}
+		&:before {
+			@include transition(all 0.4s);
+			opacity: 0;
+		}
+		&:after {
+			z-index: 1;
+			background-size: 50%;
+			background-repeat: no-repeat;
+			background-position: center;
+		}
+
+		&:hover {
+			&:before {
+				opacity: 1;
+			}
+		}
+
+		&.prev {
+			left: 0;
+			&:after {
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46.356' height='81.085' viewBox='0 0 46.356 81.085'%3E%3Cpath id='Icon_ionic-ios-arrow-back' data-name='Icon ionic-ios-arrow-back' d='M25.225 46.725l30.68-30.656A5.795 5.795 0 1 0 47.7 7.886L12.938 42.622a5.783 5.783 0 0 0-.169 7.99l34.9 34.977a5.795 5.795 0 0 0 8.207-8.183Z' transform='translate(-11.251 -6.194)' fill='%230c0903'/%3E%3C/svg%3E");
+			}
+			&:before {
+				background: linear-gradient(90deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+			}
+		}
+		&.next {
+			right: 0;
+			&:after {
+				background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='46.356' height='81.085' viewBox='0 0 46.356 81.085'%3E%3Cpath d='M25.225 46.725l30.68-30.656A5.795 5.795 0 1 0 47.7 7.886L12.938 42.622a5.783 5.783 0 0 0-.169 7.99l34.9 34.977a5.795 5.795 0 0 0 8.207-8.183Z' transform='translate(57.607 87.278) rotate(180)' fill='%230c0903'/%3E%3C/svg%3E");
+			}
+			&:before {
+				background: linear-gradient(270deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
+			}
+		}
+	}
+}
 
 .searchform {
 	input {
@@ -1414,5 +1653,38 @@ figure{
 			}
 		}
 	}
+
+	.n4d-slider {
+
+
+			.mask {
+				padding-left: 0;
+				.track {
+					padding-left: calc((100vw - 300px)/2);
+
+					.slides {
+						.slide {
+							.slide-body {
+								top: auto;
+								bottom: 0;
+							}
+						}
+					}
+				}
+	//
+			}
+
+
+			.control {
+				&.prev {
+					left: 0;
+					right: auto;
+				}
+				&.next {
+					left: auto;
+					right: 0;
+				}
+			}
+		}
 
 }

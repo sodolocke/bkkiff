@@ -16,6 +16,7 @@
     "tui-calendar": "^1.15.3",
     "vanillajs-datepicker": "^1.3.4",
     "video.js": "^8.23.3",
-    "videojs-playlist": "^5.2.0"
+    "videojs-playlist": "^5.2.0",
+    "xwiper": "^2.2.1"
   }
 }

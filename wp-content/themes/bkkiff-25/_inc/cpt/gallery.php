@@ -71,6 +71,14 @@ function n4d_archive_pages() {
 		array('gallery'),
 		'side'
 	);
+	$page = add_submenu_page(
+		'edit.php?post_type=film',
+		__('Import', 'bkkiff'),
+		__('Import', 'bkkiff'),
+		'edit_pages',
+		'import-tools',
+		'n4d_archive_import_options'
+	);
 }
 
 function n4d_project_gallery_generator($post, $suffix = "", $source = "gallery_ids", $js = true){
@@ -265,4 +273,45 @@ function n4d_save_project_meta_box_data( $post_id ) {
 			delete_post_meta( $post_id, "_{$item}", true );
 		}
 	}
+}
+
+
+function n4d_archive_import_options() {
+	if (!current_user_can('edit_posts')) wp_die( __('You do not have sufficient permissions to access this page.','chm') );
+
+	$importing = false;
+
+	if (isset($_POST['archive_import']) && $_POST['archive_import'] == '1'){
+		$args = array();
+
+		if (isset($_POST['reset']) && $_POST['reset'] == 1 ){
+			$args['reset'] = 1;
+		}
+
+		$importing = true;
+	}
+
+	$html  = "";
+	$html .= '<div id="brand-order" class="wrap">';
+	$html .= "<h2>Import</h2><br />";
+
+	$html .= "<h3>Project Importer</h3>";
+	$html .= "<form method=\"post\" action=\"\" id=\"n4d_product_import\" enctype=\"multipart/form-data\"> ";
+	$html .= '<input type="hidden" name="_wpnonce" id="_wpnonce" value="'.wp_create_nonce( plugin_basename(__FILE__) ) . '" />';
+	$html .= '<input type="hidden" name="product_import" id="product_import" value="1" />';
+
+
+	$html .= '<div class="progress n4d-progress">';
+	$html .= '<div id="progress-app" class="progress-bar" role="progressbar" aria-label="Import Applicants" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>';
+	$html .= '</div>';
+	$html .= '<div id="status-app" class="status-ajax">&nbsp;</div>';
+
+	$html .= '<input type="button" name="submit_ajax" class="button button-primary submit-ajax" value="Import">';
+	$html .= '</form>';
+	$html .= "<br /><hr />";
+
+	$html .= '</div>';
+
+	echo $html;
+
 }
