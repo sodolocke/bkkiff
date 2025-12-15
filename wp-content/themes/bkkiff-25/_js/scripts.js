@@ -261,9 +261,16 @@ console.log('popup', mode)
 			sliders.forEach( (slider, index) => {
 				const prev   = slider.querySelector(".control.prev")
 				const next   = slider.querySelector(".control.next")
-				const stage  = slider.querySelectorAll(".slides")
+				const stage  = slider.querySelector(".slides")
 				const slides = slider.querySelectorAll(".slide")
-				const limit  = (slides) ? (slides.length - Math.floor(slider.offsetWidth/slides[0].offsetWidth) ) : 0//slides.length - 1
+				const limit  = (slides && slides.length > 0) ? (slides.length - Math.floor(slider.offsetWidth/slides[0].offsetWidth) ) : 0//slides.length - 1
+
+				if (slider.offsetWidth > stage.offsetWidth){
+					slider.classList.add("single")
+				}
+				else {
+					slider.classList.remove("single")
+				}
 
 				if (prev){
 					prev.addEventListener("click", e => {

@@ -113,7 +113,7 @@ function get_post_card($id, $hide_cat = false){
 
 	return $card;
 }
-function get_gallery_card($id, $hide_cat = false){
+function get_gallery_card($id, $hide = false){
 	$lang      = apply_filters( 'wpml_current_language', NULL );
 	$title     = get_the_title($id);
 	$date      = get_post_field("post_date", $id);
@@ -142,17 +142,18 @@ function get_gallery_card($id, $hide_cat = false){
 	$card .= "<a data-id=\"{$id}\" data-bs-toggle=\"modal\" data-bs-target=\"#popup-modal\" data-mode=\"gallery\" class=\"card-image no-icon\">";
 	$card .= ($img_id) ? wp_get_attachment_image( $img_id, 'card', false, array()) : "";
 	$card .= "</a>";
+	if (!$hide){
+		$card .= "<div class=\"card-body\">";
+		$card .= "<div class=\"meta\">";
+		$card .= "<div class=\"card-date\">{$date}</div>";
+		$card .= "</div>";
 
-	$card .= "<div class=\"card-body\">";
-	$card .= "<div class=\"meta\">";
-	$card .= "<div class=\"card-date\">{$date}</div>";
-	$card .= "</div>";
-
-	$card .= "<h4 class=\"card-title\"><a data-bs-toggle=\"modal\" data-bs-target=\"#popup-modal\" data-mode=\"gallery\">{$title}</a></h4>";
-	$card .= "<div class=\"card-excerpt\">";
-	$card .= get_the_excerpt($id);
-	$card .= "</div>";//excerpt
-	$card .= "</div>";//body
+		$card .= "<h4 class=\"card-title\"><a data-bs-toggle=\"modal\" data-bs-target=\"#popup-modal\" data-mode=\"gallery\">{$title}</a></h4>";
+		$card .= "<div class=\"card-excerpt\">";
+		$card .= get_the_excerpt($id);
+		$card .= "</div>";//excerpt
+		$card .= "</div>";//body
+	}
 
 	$card .= "</div>";//card
 
@@ -235,7 +236,7 @@ function get_film_card($id, $classes = "", $index = false){
 	$data_index = ($index) ? " data-index=\"{$index}\"" : "";
 
 	$card  = "";
-	$card .= "<a href=\"{$url}\" class=\"card film{$classes}\"{$data_index}>";
+	$card .= "<a href=\"{$url}\" class=\"card film{$classes}\" target=\"_blank\"{$data_index}>";
 
 
 	$card .= "<div class=\"card-image\">";

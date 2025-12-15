@@ -22601,7 +22601,6 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
 .modal.gallery .modal-dialog .modal-content .modal-body .gallery-carousel .carousel-indicators [data-bs-target], .modal.image .modal-dialog .modal-content .modal-body .gallery-carousel .carousel-indicators [data-bs-target] {
   text-indent: 0;
   width: 100px;
-  height: 90px;
   background-color: #000;
 }
 .modal.gallery .modal-dialog .modal-content .modal-body .gallery-carousel .carousel-indicators [data-bs-target] img, .modal.image .modal-dialog .modal-content .modal-body .gallery-carousel .carousel-indicators [data-bs-target] img {
@@ -22807,13 +22806,14 @@ figure.wp-block-gallery.overflow {
 .card.film .card-image {
   position: relative;
   background-color: #f8f9fa;
+  height: 100%;
 }
 .card.film .card-image img {
-  top: 0;
-  left: 0;
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 .card.film:hover .card-body {
   opacity: 1;
@@ -22846,7 +22846,7 @@ figure.wp-block-gallery.overflow {
   margin-bottom: 0.75rem;
 }
 .card.film .card-body .card-title {
-  margin-bottom: 3rem;
+  margin-bottom: 0.75rem;
 }
 .card.film .card-body .card-title a {
   color: #000;
@@ -22857,8 +22857,12 @@ figure.wp-block-gallery.overflow {
   color: #D94423;
 }
 .card.film .card-body .card-excerpt {
+  height: calc(100% - 60px);
+  overflow: auto;
   min-height: 80px;
   margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
 }
 .card.gallery {
   border-radius: 0;
@@ -22871,6 +22875,7 @@ figure.wp-block-gallery.overflow {
   padding-bottom: 75%;
   background-color: #f8f9fa;
   margin-bottom: 15px;
+  cursor: pointer;
 }
 .card.gallery .card-image img {
   position: absolute;
@@ -23106,7 +23111,7 @@ figure.wp-block-gallery.overflow {
 .n4d-slider .mask .track .slides .slide {
   position: relative;
   width: 300px;
-  height: auto;
+  height: 420px;
   margin: 0 0.75rem 0.75rem 0;
   padding: 0;
   overflow: hidden;
@@ -23157,12 +23162,13 @@ figure.wp-block-gallery.overflow {
   transition: all 0.4s;
   position: absolute;
   top: 0%;
-  width: 40px;
-  height: calc(100% + 3rem);
+  width: 60px;
+  height: 100%;
   display: block;
   background-size: 50%;
   background-repeat: no-repeat;
   background-position: center;
+  cursor: pointer;
 }
 @media (prefers-reduced-motion: reduce) {
   .n4d-slider .control {
@@ -23213,6 +23219,29 @@ figure.wp-block-gallery.overflow {
 }
 .n4d-slider .control.next:before {
   background: linear-gradient(270deg, rgb(255, 255, 255) 0%, rgba(255, 255, 255, 0) 100%);
+}
+.n4d-slider.single .mask {
+  left: 0;
+  width: 100%;
+  padding: 0;
+}
+.n4d-slider.single .mask .track {
+  padding-left: 0;
+  justify-content: center;
+}
+.n4d-slider.single .control {
+  display: none;
+}
+.n4d-slider.fill {
+  position: relative;
+  top: 0;
+  left: calc(-1 * (100vw - 100%) / 2);
+  width: 100vw;
+}
+.n4d-slider.fill .mask {
+  top: 0;
+  left: 0;
+  padding: 0;
 }
 
 .searchform input {

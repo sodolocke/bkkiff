@@ -19,6 +19,7 @@ function n4d_import_films($added, $offset){
 	$labels        = [];
 	$debug         = [];
 	$processed     = ($added) ? $added : -1;
+//	if ($processed > 65) $processed = 65;
 	$row           = -1;
 	$limit         = 300;
 	$total         = -1;
@@ -30,6 +31,15 @@ function n4d_import_films($added, $offset){
 	$n      = 0;
 
 	$skip = [];//array(1168073);//1161381,
+
+	$types_indexes = [];
+	$terms = get_terms(array(
+		"taxonomy"   => "films",
+		"hide_empty" => false,
+	));
+	foreach($terms as $term){
+		$types_indexes[$term->slug] = $term->term_id;
+	}
 
 	foreach($films as $row => $film){
 		$film_id = false;
@@ -51,7 +61,7 @@ function n4d_import_films($added, $offset){
 				)
 			));
 
-			$selected = (in_array("VP", $film['tags'])) ? true : false;
+			$selected = true;//(in_array("VP", $film['tags'])) ? true : false;
 
 
 			if (!$find){
@@ -84,10 +94,10 @@ function n4d_import_films($added, $offset){
 					'post_title'   => $film['title_english'],
 					'post_content' => (isset($film['synopsis_long'])) ? $film['synopsis_long']  : "",
 					'post_excerpt' => (isset($film['synopsis_short'])) ? $film['synopsis_short']  : "",
-					'post_status'  => ($selected) ? 'publish' : 'pending',
+					'post_status'  => 'publish'//($selected) ?  : 'pending',
 				);
 
-//				wp_update_post( $update_args );
+				wp_update_post( $update_args );
 /**/
 				$url    = (isset($film['poster']['normal'])) ? $film['poster']['normal'] : false;
 				$img_id = n4d_get_attachment_id_from_url( $url );
@@ -105,13 +115,19 @@ function n4d_import_films($added, $offset){
 					if ($img_id && !is_wp_error($img_id)){
 						update_post_meta($img_id, "_wc_attachment_source", $url);
 						update_post_meta($film_id, "_thumbnail_id", $img_id);
+
+						$meta   = get_post_meta($img_id, "_wp_attachment_metadata", true);
+
+						if ($meta && $meta['width'] < $meta['height'] ){
+							update_post_meta($film_id, "_thumbnail_portrait", true);
+						}
 					}
 				}
 				else {
 					if ($url) update_post_meta($film_id, "_thumbnail_id", $img_id);
 				}
-/*
-				if ($film["sections"]){
+
+				if (isset($film["sections"])){
 					foreach($film["sections"] as $section){
 						$term = (isset($types_indexes[$section['id']])) ?  $types_indexes[$section['id']] : false;
 
@@ -121,12 +137,15 @@ function n4d_import_films($added, $offset){
 							if (!is_wp_error($term)){
 								$term = $term['term_id'];
 							}
+							else {
+								$term = false;
+							}
 						}
-
-						if($term && !is_wp_error($term)) wp_set_post_terms( $film_id, $term, "films" );
+						if ($term && !is_wp_error($term)) wp_set_post_terms( $film_id, $term, "films" );
 					}
+
 				}
-*/
+
 				if ( n4d_time_exceeded($start_time) || n4d_memory_exceeded() )  {
 					return array(
 						"status"    => false,

@@ -3,6 +3,7 @@ add_shortcode( 'n4d_news', 'render_news' );
 add_shortcode('n4d_news', 'n4d_news_carousel');
 add_shortcode('n4d_carousel', 'n4d_carousel_shortcode');
 add_shortcode('n4d_galleries', 'render_galleries');
+add_shortcode('n4d_gallery', 'render_gallery');
 add_shortcode('n4d_films', 'render_films');
 
 function render_films($attributes = null, $content = null){
@@ -24,7 +25,11 @@ function render_films($attributes = null, $content = null){
 		"s"          => false,
 		"parent"     => false,
 		"dark_mode"  => false,
+		"title"      => "Film",
+		"category"   => false,
 		"column"     => 2,
+		"all"        => "https://vp.eventival.com/bkkiff/2025/film-catalogue",
+		"fill"       => false
 	);
 
 	$attributes = shortcode_atts( $default_attributes, $attributes );
@@ -37,23 +42,57 @@ function render_films($attributes = null, $content = null){
 		"order"            => "ASC",
 		"orderby"          => "rand",
 		"meta_query"       => array(
+			"relation"     => "AND",
 			array(
 				"key" => "_thumbnail_id",
+			),
+/*
+			array(
+				"key" => "_thumbnail_portrait",
 			)
+*/
 		)
 	);
 
-	$items = get_posts( $args );
+	if ($attributes["category"]){
+		$args["post_status"] = array("publish","pending");
+		$args["tax_query"] = array(
+			array(
+				"taxonomy" => "films",
+				"field"    => "name",
+				"terms"    => $attributes["category"]
+			)
+		);
+		$args["posts_per_page"] = -1;
+
+//		unset($args['meta_query']);
+	}
+
+	if ($attributes["ids"]){
+		$items = explode(",", $attributes["ids"]);
+	} else {
+		$items = get_posts( $args );
+	}
+
 
 	$html  = "";
 	$all   = "";
 
+	$slider_class  = "";
+
+	if (sizeof($items) < 2){
+		$slider_class .= " single";
+	}
+	if ($attributes['fill'] == true){
+		$slider_class .= " fill";
+	}
+
 //	$slug = $term;
 //	$term = get_term_by("slug", $slug, $taxonomy);
 
-	$all   = "<a href=\"https://vp.eventival.com/bkkiff/2025/film-catalogue\" class=\"all btn btn-outline-dark\">View All</a>";
-	$html .= "<div class=\"container\"><h2 class=\"slide-title\">FILMS{$all}</h2></div>";
-	$html .= "<div class=\"n4d-slider\" data-current=\"0\">";
+	$all   = ($attributes['all'] !== "") ? "<a href=\"{$attributes['all']}\" class=\"all btn btn-outline-dark\" taregt=\"_blank\">View All</a>" : "";
+	$html .= ($attributes['title'] !== "") ? "<div class=\"container\"><h2 class=\"slide-title\">{$attributes['title']}{$all}</h2></div>" : "";
+	$html .= "<div class=\"n4d-slider{$slider_class}\" data-current=\"0\">";
 
 	$html .= "<div class=\"mask\">";
 	$html .= "<div class=\"track\">";
@@ -291,7 +330,7 @@ function render_galleries($attributes = null, $content = null){
 		$options .= "<option value=\"?galleries={$type->term_id}\"{$selected}>{$type->name}</option>";
 	}
 
-	$html .= "<select class=\"form-select\"><option value=\"-1\">Theme</option>{$options}</select>";
+	//$html .= "<select class=\"form-select\"><option value=\"-1\">Theme</option>{$options}</select>";
 	$html .= "</form>";
 	$html .= "<div class=\"row g-3\">";
 
@@ -312,6 +351,62 @@ function render_galleries($attributes = null, $content = null){
 	$html .= "</div>"; // row
 	if ( $attributes["pagniation"]  === true ) {
 		$html .= n4d_pagniation($attributes["home"]."page/", $attributes["page"], intval($attributes["limit"]), $wp_query->found_posts, "", $attributes["home"]);
+	}
+
+
+	return $html;
+}
+function render_gallery($attributes = null, $content = null){
+	global $wp_query, $exclude;
+	$paged        = get_query_var('paged');
+	$qa           = [];
+	$prefix       = "";
+
+	$slug         = get_query_var("projects");
+	$slug         = ($slug) ? "{$slug}/" : "";
+
+	$default_attributes = array(
+		"id"         => false,
+		"exclude"    => ($exclude) ? $exclude : [],
+		"page"       => ($paged) ? $paged : 0,
+		"home"       => "{$prefix}/our-work/{$slug}",
+		"limit"      => get_option( 'posts_per_page' ),
+		"pagniation" => false,
+		"slugs"      => false,
+		"s"          => false,
+		"parent"     => false,
+		"dark_mode"  => false,
+		"column"     => 2,
+		"taxonomy"   => "galleries",
+		"term"       => ( isset($_GET['galleries']) ) ? $_GET['galleries'] : false,
+		"month"      => ( isset($_GET['month']) ) ? $_GET['month'] : false,
+	);
+
+	$html  = "";
+
+	$attributes = shortcode_atts( $default_attributes, $attributes );
+
+	if ( $attributes["id"] ){
+
+		$html .= "<div class=\"row g-0\">";
+
+		$c = 0;
+
+		$items = array($attributes["id"]);
+
+		foreach($items as $id){
+			$c++;
+			$col   = " col-12";
+			$card    = get_gallery_card($id, true);
+			$url     = get_permalink($id);
+
+
+			$html .= "<div class=\"{$col}\">";
+			$html .= $card;
+			$html .= "</div>";//col
+
+		}
+		$html .= "</div>"; // row
 	}
 
 

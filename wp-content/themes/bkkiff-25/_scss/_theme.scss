@@ -1,3 +1,5 @@
+$slide-height: 420px;
+
 body {
 	padding-top: 124px;
 	color: $black;
@@ -602,7 +604,7 @@ h1,h2,h3,h4,h5,h6{
 							[data-bs-target] {
 								text-indent: 0;
 								width: 100px;
-								height: 90px;
+//								height: 90px;
 								background-color: $black;
 
 								img {
@@ -850,15 +852,13 @@ figure.wp-block-gallery {
 		.card-image {
 			position: relative;
 			background-color: $gray-100;
+			height: 100%;
 
 			img {
-//				position: absolute;
-				top: 0;
-				left: 0;
 				width: 100%;
 				max-width: 100%;
-				height: auto;
-//				object-fit: cover;
+				height: 100%;
+				object-fit: cover;
 			}
 
 		}
@@ -893,7 +893,7 @@ figure.wp-block-gallery {
 				margin-bottom: .75rem;
 			}
 			.card-title {
-				margin-bottom: 3rem;
+				margin-bottom: .75rem;
 
 				a {
 					color: $black;
@@ -906,8 +906,13 @@ figure.wp-block-gallery {
 				}
 			}
 			.card-excerpt {
+				height: calc(100% - 60px);
+				overflow: auto;
 				min-height: 80px;
 				margin-bottom: 1.5rem;
+				display: flex;
+				align-items: center;
+
 			}
 		}
 	}
@@ -922,6 +927,7 @@ figure.wp-block-gallery {
 			padding-bottom: calc(3 / 4 * 100%);
 			background-color: $gray-100;
 			margin-bottom: 15px;
+			cursor: pointer;
 
 			img {
 				position: absolute;
@@ -1143,7 +1149,7 @@ figure.wp-block-gallery {
 		}
 	}
 }
-$slide-height: 420px;
+
 .n4d-slider {
 	display: flex;
 	position: relative;
@@ -1178,7 +1184,7 @@ $slide-height: 420px;
 				.slide {
 					position: relative;
 					width: 300px;
-					height: auto;
+					height: $slide-height;
 					margin: 0 0.75rem 0.75rem 0;
 					padding: 0;
 					overflow: hidden;
@@ -1234,12 +1240,13 @@ $slide-height: 420px;
 		@include transition(all 0.4s);
 		position: absolute;
 		top: 0%;
-		width: 40px;
-		height: calc(100% + 3rem);
+		width: 60px;
+		height: 100%;
 		display: block;
 		background-size: 50%;
 		background-repeat: no-repeat;
 		background-position: center;
+		cursor: pointer;
 
 		&:before,
 		&:after {
@@ -1286,6 +1293,36 @@ $slide-height: 420px;
 				background: linear-gradient(270deg,rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 100%);
 			}
 		}
+	}
+
+
+	&.single {
+		.mask {
+			left: 0;
+			width: 100%;
+			padding: 0;
+
+			.track {
+				padding-left: 0;
+				justify-content: center;
+			}
+		}
+		.control {
+			display: none;
+		}
+	}
+	&.fill {
+		position: relative;
+		top: 0;
+		left: calc((-1 * (100vw - 100%) / 2));
+		width: calc(100vw);
+
+		.mask {
+			top: 0;
+			left: 0;
+			padding: 0;
+		}
+
 	}
 }
 

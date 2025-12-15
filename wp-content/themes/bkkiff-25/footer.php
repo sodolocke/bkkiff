@@ -75,6 +75,35 @@
 	wp_footer();
 
 //	n4d_get_films(true);
+
+/*
+$films = get_posts(array(
+	"post_type"      => "film",
+	"post_status"    => array("pending", "publish"),
+	"posts_per_page" => -1,
+	"fields"         => "ids",
+	"meta_query"     => array(
+		array(
+			"key" => "_thumbnail_id"
+		)
+	)
+));
+foreach($films as $key => $film_id){
+	$data = get_post_meta($film_id, "_data", true);
+
+	if ($key == 0){
+
+		if (isset($data["sections"])){
+			foreach($data["sections"] as $section ){
+
+				echo $section['id'];
+			}
+		}
+
+	}
+
+}
+/**/
 ?>
 </body>
 </html>
